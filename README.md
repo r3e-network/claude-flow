@@ -1,5 +1,7 @@
 # 🌊 Codex-Flow v2.7.0: Enterprise AI Orchestration Platform
 
+> **Note:** Codex-Flow is a Codex-only refactor of the original Claude-Flow project. Legacy paths (`claude-flow.config.json`, `.claude-flow/`) and MCP tool prefixes remain supported for compatibility, but new defaults and binaries are Codex-first (`codex-flow`, `.codex-flow/`, `mcp__codex-flow__…`).
+
 <div align="center">
 
 [![🌟 Star on GitHub](https://img.shields.io/github/stars/ruvnet/codex-flow?style=for-the-badge&logo=github&color=gold)](https://github.com/ruvnet/codex-flow)
