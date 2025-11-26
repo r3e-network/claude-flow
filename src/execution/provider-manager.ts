@@ -28,7 +28,10 @@ export class ProviderManager {
   private configPath: string;
 
   constructor() {
-    this.configPath = path.join(os.homedir(), '.claude', 'settings.json');
+    const codexConfig = path.join(os.homedir(), '.codex-flow', 'settings.json');
+    const legacyConfig = path.join(os.homedir(), '.claude', 'settings.json');
+    this.configPath = fs.existsSync(codexConfig) ? codexConfig : codexConfig;
+    // Prefer codex path; legacy path remains readable via loadConfig fallbacks
     this.config = this.loadConfig();
   }
 
@@ -96,18 +99,26 @@ export class ProviderManager {
    * Load configuration from file
    */
   private loadConfig(): ExecutionConfig {
-    try {
-      if (fs.existsSync(this.configPath)) {
-        const data = fs.readFileSync(this.configPath, 'utf-8');
-        const settings = JSON.parse(data);
-        return (
-          settings['codex-flow']?.execution ||
-          settings['claude-flow']?.execution ||
-          this.getDefaultConfig()
-        );
+    const candidates = [
+      this.configPath,
+      path.join(os.homedir(), '.codex-flow', 'settings.json'),
+      path.join(os.homedir(), '.claude', 'settings.json'),
+    ];
+
+    for (const candidate of candidates) {
+      try {
+        if (fs.existsSync(candidate)) {
+          const data = fs.readFileSync(candidate, 'utf-8');
+          const settings = JSON.parse(data);
+          return (
+            settings['codex-flow']?.execution ||
+            settings['claude-flow']?.execution ||
+            this.getDefaultConfig()
+          );
+        }
+      } catch (error) {
+        console.warn(`Failed to load provider config from ${candidate}, trying next`);
       }
-    } catch (error) {
-      console.warn('Failed to load provider config, using defaults');
     }
 
     return this.getDefaultConfig();
