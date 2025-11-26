@@ -544,7 +544,7 @@ class SwarmUI {
 
       // Execute swarm command
       const args = ['swarm', description, '--ui', '--monitor'];
-      const process = spawn('claude-flow', args, {
+      const process = spawn('codex-flow', args, {
         detached: true,
         stdio: 'ignore',
       });
@@ -612,7 +612,7 @@ class SwarmUI {
     if (os.platform() === 'win32') {
       // Windows: Use wmic to find and kill processes
       exec(
-        'wmic process where "commandline like \'%claude-flow swarm%\'" get processid',
+        'wmic process where "commandline like \'%codex-flow swarm%\'" get processid',
         (error, stdout) => {
           if (!error && stdout) {
             const pids = stdout
@@ -632,7 +632,7 @@ class SwarmUI {
       );
     } else {
       // Unix-like systems: Use ps and grep
-      exec('ps aux | grep "claude-flow swarm" | grep -v grep', (error, stdout) => {
+      exec('ps aux | grep "codex-flow swarm" | grep -v grep', (error, stdout) => {
         if (!error && stdout) {
           const lines = stdout.split('\n').filter((line) => line.trim());
           lines.forEach((line) => {

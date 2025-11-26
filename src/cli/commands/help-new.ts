@@ -23,9 +23,9 @@ function showMainHelp(): void {
   const mainHelp: CommandInfo = {
     name: 'claude-flow',
     description: 'Advanced AI agent orchestration system',
-    usage: `claude-flow <command> [<args>] [options]
-    claude-flow <command> --help
-    claude-flow --version`,
+    usage: `codex-flow <command> [<args>] [options]
+    codex-flow <command> --help
+    codex-flow --version`,
     commands: [
       {
         name: 'hive-mind',
@@ -104,10 +104,10 @@ function showMainHelp(): void {
       },
     ],
     examples: [
-      'claude-flow init --sparc',
-      'claude-flow hive-mind wizard',
-      'claude-flow swarm "Build REST API"',
-      'claude-flow status --json',
+      'codex-flow init --sparc',
+      'codex-flow hive-mind wizard',
+      'codex-flow swarm "Build REST API"',
+      'codex-flow status --json',
     ],
   };
 
@@ -122,8 +122,8 @@ function showCommandHelp(command: string): void {
     console.error(
       HelpFormatter.formatError(
         `Unknown command: ${command}`,
-        'claude-flow help',
-        'claude-flow help [command]',
+        'codex-flow help',
+        'codex-flow help [command]',
       ),
     );
   }
@@ -132,9 +132,9 @@ function showCommandHelp(command: string): void {
 function getCommandHelp(command: string): CommandInfo | null {
   const commandHelpMap: Record<string, CommandInfo> = {
     'hive-mind': {
-      name: 'claude-flow hive-mind',
+      name: 'codex-flow hive-mind',
       description: 'Manage hive mind swarm intelligence',
-      usage: 'claude-flow hive-mind <subcommand> [options]',
+      usage: 'codex-flow hive-mind <subcommand> [options]',
       commands: [
         { name: 'init', description: 'Initialize hive mind system' },
         { name: 'spawn', description: 'Create intelligent swarm with objective' },
@@ -171,15 +171,15 @@ function getCommandHelp(command: string): CommandInfo | null {
         },
       ],
       examples: [
-        'claude-flow hive-mind spawn "Build REST API" --queen-type strategic',
-        'claude-flow hive-mind status --json',
-        'claude-flow hive-mind stop swarm-123',
+        'codex-flow hive-mind spawn "Build REST API" --queen-type strategic',
+        'codex-flow hive-mind status --json',
+        'codex-flow hive-mind stop swarm-123',
       ],
     },
     agent: {
-      name: 'claude-flow agent',
+      name: 'codex-flow agent',
       description: 'Manage individual agents',
-      usage: 'claude-flow agent <action> [options]',
+      usage: 'codex-flow agent <action> [options]',
       commands: [
         { name: 'spawn', description: 'Create a new agent' },
         { name: 'list', description: 'List all active agents' },
@@ -206,15 +206,15 @@ function getCommandHelp(command: string): CommandInfo | null {
         },
       ],
       examples: [
-        'claude-flow agent spawn researcher --name "Research Bot"',
-        'claude-flow agent list --json',
-        'claude-flow agent terminate agent-123',
+        'codex-flow agent spawn researcher --name "Research Bot"',
+        'codex-flow agent list --json',
+        'codex-flow agent terminate agent-123',
       ],
     },
     init: {
-      name: 'claude-flow init',
+      name: 'codex-flow init',
       description: 'Initialize Claude Flow configuration',
-      usage: 'claude-flow init [options]',
+      usage: 'codex-flow init [options]',
       options: [
         {
           flags: '--sparc',
@@ -235,9 +235,9 @@ function getCommandHelp(command: string): CommandInfo | null {
         },
       ],
       examples: [
-        'claude-flow init',
-        'claude-flow init --sparc',
-        'claude-flow init --template production',
+        'codex-flow init',
+        'codex-flow init --sparc',
+        'codex-flow init --template production',
       ],
     },
   };

@@ -100,7 +100,11 @@ export class ProviderManager {
       if (fs.existsSync(this.configPath)) {
         const data = fs.readFileSync(this.configPath, 'utf-8');
         const settings = JSON.parse(data);
-        return settings['claude-flow']?.execution || this.getDefaultConfig();
+        return (
+          settings['codex-flow']?.execution ||
+          settings['claude-flow']?.execution ||
+          this.getDefaultConfig()
+        );
       }
     } catch (error) {
       console.warn('Failed to load provider config, using defaults');
@@ -122,11 +126,11 @@ export class ProviderManager {
         settings = JSON.parse(data);
       }
 
-      if (!settings['claude-flow']) {
-        settings['claude-flow'] = {};
+      if (!settings['codex-flow']) {
+        settings['codex-flow'] = {};
       }
 
-      settings['claude-flow'].execution = this.config;
+      settings['codex-flow'].execution = this.config;
 
       await fs.writeFile(
         this.configPath,

@@ -293,7 +293,7 @@ async function listMcpTools(subArgs, flags) {
   log('\n📡 Status: 87 tools & resources available when server is running');
   log('🎯 Categories: swarm, neural, memory, analysis, workflow, github, daa, system');
   log('🔗 Compatibility: ruv-swarm + DAA + Claude-Flow unified platform');
-  log('\n💡 Usage: claude-flow mcp tools --category=<category> --verbose');
+  log('\n💡 Usage: codex-flow mcp tools --category=<category> --verbose');
 }
 
 async function manageMcpAuth(subArgs, flags) {
@@ -324,8 +324,8 @@ async function manageMcpAuth(subArgs, flags) {
     default:
       log('Auth commands: setup, status, rotate');
       log('Examples:');
-      log('  claude-flow mcp auth setup');
-      log('  claude-flow mcp auth status');
+      log('  codex-flow mcp auth setup');
+      log('  codex-flow mcp auth status');
   }
 }
 
@@ -416,12 +416,12 @@ function showMcpHelp() {
   log('  system       ⚙️ System & utilities (8 tools)');
   log();
   log('EXAMPLES:');
-  log('  claude-flow mcp status');
-  log('  claude-flow mcp start --auto-orchestrator --daemon');
-  log('  claude-flow mcp tools --category=neural --verbose');
-  log('  claude-flow mcp tools --category=swarm');
-  log('  claude-flow mcp config');
-  log('  claude-flow mcp auth setup');
+  log('  codex-flow mcp status');
+  log('  codex-flow mcp start --auto-orchestrator --daemon');
+  log('  codex-flow mcp tools --category=neural --verbose');
+  log('  codex-flow mcp tools --category=swarm');
+  log('  codex-flow mcp config');
+  log('  codex-flow mcp auth setup');
   log();
   log('🎯 Total: 87 tools & resources available');
   log('🔗 Full ruv-swarm + DAA + Claude-Flow integration');

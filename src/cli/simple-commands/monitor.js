@@ -410,8 +410,8 @@ export function showMonitorHelp() {
   console.log('  --watch                          Continuous monitoring mode');
   console.log();
   console.log('Examples:');
-  console.log('  claude-flow monitor              # Show current metrics');
-  console.log('  claude-flow monitor --watch      # Continuous monitoring');
-  console.log('  claude-flow monitor --interval 1000 --watch  # Fast updates');
-  console.log('  claude-flow monitor --format json            # JSON output');
+  console.log('  codex-flow monitor              # Show current metrics');
+  console.log('  codex-flow monitor --watch      # Continuous monitoring');
+  console.log('  codex-flow monitor --interval 1000 --watch  # Fast updates');
+  console.log('  codex-flow monitor --format json            # JSON output');
 }

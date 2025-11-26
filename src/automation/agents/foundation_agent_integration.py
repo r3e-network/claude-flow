@@ -47,7 +47,7 @@ class FoundationAgentIntegration:
         )
     
     def _run_hook(self, hook_type: str, **kwargs) -> Optional[Dict]:
-        """Run claude-flow hooks for coordination"""
+        """Run codex-flow hooks for coordination"""
         cmd = ["npx", "claude-flow@alpha", "hooks", hook_type]
         
         # Add parameters

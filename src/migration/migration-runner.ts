@@ -273,9 +273,9 @@ export class MigrationRunner {
       }
 
       const scripts = {
-        migrate: 'claude-flow migrate',
-        'migrate:analyze': 'claude-flow migrate analyze',
-        'migrate:rollback': 'claude-flow migrate rollback',
+        migrate: 'codex-flow migrate',
+        'migrate:analyze': 'codex-flow migrate analyze',
+        'migrate:rollback': 'codex-flow migrate rollback',
       };
 
       let modified = false;
@@ -576,7 +576,7 @@ export class MigrationRunner {
     if (result.rollbackPath) {
       console.log(`\n${chalk.bold('Rollback Available:')} ${result.rollbackPath}`);
       console.log(
-        chalk.gray(`  Run "claude-flow migrate rollback -t ${result.rollbackPath}" to revert`),
+        chalk.gray(`  Run "codex-flow migrate rollback -t ${result.rollbackPath}" to revert`),
       );
     }
 

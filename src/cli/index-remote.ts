@@ -21,7 +21,7 @@ function printHelp() {
 🧠 Claude-Flow v${VERSION} - Advanced AI Agent Orchestration System
 
 USAGE:
-  claude-flow [COMMAND] [OPTIONS]
+  codex-flow [COMMAND] [OPTIONS]
 
 COMMANDS:
   init                  Initialize Claude Code integration files
@@ -45,12 +45,12 @@ OPTIONS:
   --help                Show help for any command
 
 EXAMPLES:
-  claude-flow init                    # Initialize Claude Code integration
-  claude-flow start                   # Start orchestration system
-  claude-flow agent spawn researcher  # Spawn a research agent
-  claude-flow task create research "Analyze authentication patterns"
-  claude-flow memory store key "value"
-  claude-flow status                  # Check system status
+  codex-flow init                    # Initialize Claude Code integration
+  codex-flow start                   # Start orchestration system
+  codex-flow agent spawn researcher  # Spawn a research agent
+  codex-flow task create research "Analyze authentication patterns"
+  codex-flow memory store key "value"
+  codex-flow status                  # Check system status
 
 For more info: https://github.com/ruvnet/claude-code-flow
 `);
@@ -96,18 +96,18 @@ async function main() {
       console.log('\n💡 To run locally, clone the repo and use:');
       console.log('   git clone https://github.com/ruvnet/claude-code-flow.git');
       console.log('   cd claude-code-flow');
-      console.log('   npm install -g claude-flow');
-      console.log('   claude-flow init');
+      console.log('   npm install -g codex-flow');
+      console.log('   codex-flow init');
       break;
 
     case 'install':
       console.log(chalk.blue('📦 Installing Claude-Flow...'));
       console.log('\nRun these commands to install:');
       console.log(chalk.gray('  # Using npm (recommended)'));
-      console.log('  npm install -g claude-flow');
+      console.log('  npm install -g codex-flow');
       console.log('');
       console.log(chalk.gray('  # Or using Deno'));
-      console.log('  deno install --allow-all --name claude-flow \\');
+      console.log('  deno install --allow-all --name codex-flow \\');
       console.log(
         '    https://raw.githubusercontent.com/ruvnet/claude-code-flow/main/src/cli/index.ts',
       );
@@ -121,9 +121,9 @@ async function main() {
     default:
       printWarning(`Command '${command}' requires local installation.`);
       console.log('\n📥 To use all features, install Claude-Flow:');
-      console.log('   npm install -g claude-flow');
+      console.log('   npm install -g codex-flow');
       console.log('\n🌐 Or run directly with Deno:');
-      console.log('   deno install --allow-all --name claude-flow \\');
+      console.log('   deno install --allow-all --name codex-flow \\');
       console.log(
         '     https://raw.githubusercontent.com/ruvnet/claude-code-flow/main/src/cli/index.ts',
       );

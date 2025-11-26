@@ -1,6 +1,6 @@
 lc#!/usr/bin/env node
 /**
- * Background swarm launcher for Claude Code invocations
+ * Background swarm launcher for Codex CLI invocations
  * Prevents timeouts by running swarm in detached mode
  */
 

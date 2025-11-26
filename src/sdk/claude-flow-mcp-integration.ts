@@ -301,7 +301,7 @@ export function exampleNpxIntegration() {
 ╚════════════════════════════════════════════════════════════╝
 
 # Install Claude Flow MCP server
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+claude mcp add codex-flow npx codex-flow@alpha mcp start
 
 # Optional: Add ruv-swarm for enhanced coordination
 claude mcp add ruv-swarm npx ruv-swarm mcp start
@@ -314,7 +314,7 @@ import { RealSessionForking } from './sdk/session-forking';
 
 const forking = new RealSessionForking();
 const q = query({
-  prompt: 'Use mcp__claude-flow__swarm_init to create mesh topology',
+  prompt: 'Use mcp__codex-flow__swarm_init to create mesh topology',
   options: {
     // MCP tools are auto-available via 'claude mcp add'
   }
@@ -328,7 +328,7 @@ import { RealCheckpointManager } from './sdk/checkpoint-manager';
 
 const manager = new RealCheckpointManager();
 const q = query({
-  prompt: 'Use mcp__claude-flow__neural_train to train patterns',
+  prompt: 'Use mcp__codex-flow__neural_train to train patterns',
 });
 
 await manager.trackSession('neural-session', q, true);
@@ -344,7 +344,7 @@ import { RealQueryController } from './sdk/query-control';
 const controller = new RealQueryController();
 const q = query({
   prompt: \`
-    Use mcp__claude-flow__task_orchestrate to:
+    Use mcp__codex-flow__task_orchestrate to:
     - Break down complex task
     - Distribute to agents
     - Monitor progress
@@ -364,13 +364,13 @@ import { createMathMcpServer } from './sdk/in-process-mcp';
 const q = query({
   prompt: \`
     Use math server to calculate factorial.
-    Use mcp__claude-flow__memory_usage to store result.
-    Use mcp__claude-flow__agent_spawn to process result.
+    Use mcp__codex-flow__memory_usage to store result.
+    Use mcp__codex-flow__agent_spawn to process result.
   \`,
   options: {
     mcpServers: {
       math: createMathMcpServer(), // In-process (fast!)
-      // claude-flow MCP tools auto-available
+      // codex-flow MCP tools auto-available
     }
   }
 });

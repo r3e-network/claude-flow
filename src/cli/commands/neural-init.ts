@@ -117,10 +117,10 @@ Integrated with Claude Flow neural system for persistent memory and self-learnin
 ## Usage
 \`\`\`bash
 # Initialize SAFLA neural training
-npx claude-flow neural train --type safla
+npx codex-flow neural train --type safla
 
 # Run inference
-npx claude-flow neural predict --model safla
+npx codex-flow neural predict --model safla
 \`\`\`
 `;
     await fs.writeFile(targetPath, template);
@@ -217,8 +217,8 @@ Handles neural network inference and predictions.
   
   private printUsage(): void {
     console.log('\n' + chalk.cyan('📚 Usage:'));
-    console.log(chalk.gray('  npx claude-flow neural train --type safla'));
-    console.log(chalk.gray('  npx claude-flow neural predict --model safla'));
+    console.log(chalk.gray('  npx codex-flow neural train --type safla'));
+    console.log(chalk.gray('  npx codex-flow neural predict --model safla'));
     console.log(chalk.gray('  @agent-safla-neural "Create self-improving system"'));
     console.log('\n' + chalk.cyan('🔗 Documentation:'));
     console.log(chalk.gray('  https://github.com/ruvnet/SAFLA'));

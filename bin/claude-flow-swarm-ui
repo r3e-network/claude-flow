@@ -1,5 +1,5 @@
 #!/bin/bash
-# Claude-Flow Swarm Mode with UI Wrapper
+# Codex-Flow Swarm Mode with UI Wrapper
 # This script wraps the enhanced swarm demo with blessed UI support
 
 # Find deno in the path

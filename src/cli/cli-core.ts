@@ -167,7 +167,7 @@ class CLI {
   }
 
   private async loadConfig(configPath?: string): Promise<Record<string, unknown> | undefined> {
-    const configFile = configPath || 'claude-flow.config.json';
+    const configFile = configPath || 'codex-flow.config.json';
     try {
       const content = await fs.readFile(configFile, 'utf8');
       return JSON.parse(content);

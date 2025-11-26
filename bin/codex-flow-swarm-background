@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Codex-Flow Swarm background wrapper (aliases claude-flow-swarm-background)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec "${SCRIPT_DIR}/claude-flow-swarm-background" "$@"

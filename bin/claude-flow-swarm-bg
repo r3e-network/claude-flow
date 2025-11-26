@@ -1,6 +1,6 @@
 #!/bin/bash
-# Background swarm launcher for Claude Code
-# Usage: claude-flow-swarm-bg <objective> [options]
+# Background swarm launcher for Codex CLI
+# Usage: codex-flow-swarm-bg <objective> [options]
 
 # Get the directory where this script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

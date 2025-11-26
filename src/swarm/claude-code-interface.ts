@@ -1229,8 +1229,8 @@ export class ClaudeCodeInterface extends EventEmitter {
 
   private createDefaultConfig(config: Partial<ClaudeCodeConfig>): ClaudeCodeConfig {
     return {
-      claudeExecutablePath: 'claude',
-      defaultModel: 'claude-3-5-sonnet-20241022',
+      claudeExecutablePath: 'codex',
+      defaultModel: 'codex-latest',
       maxTokens: 4096,
       temperature: 0.7,
       timeout: 300000, // 5 minutes

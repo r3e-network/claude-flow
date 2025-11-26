@@ -68,7 +68,7 @@ You are a SAFLA Neural Specialist with:
 
 ## MCP Integration
 \`\`\`javascript
-mcp__claude-flow__neural_train {
+mcp__codex-flow__neural_train {
   pattern_type: "coordination",
   training_data: safla_config
 }
@@ -135,7 +135,7 @@ You are a GOAP specialist with:
 
 ## MCP Integration
 \`\`\`javascript
-mcp__claude-flow__task_orchestrate {
+mcp__codex-flow__task_orchestrate {
   task: "achieve_goal",
   strategy: "adaptive"
 }

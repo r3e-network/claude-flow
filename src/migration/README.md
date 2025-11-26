@@ -1,6 +1,6 @@
 # Claude-Flow Migration System
 
-A comprehensive migration system for existing claude-flow projects to adopt optimized prompts and configurations.
+A comprehensive migration system for existing codex-flow projects to adopt optimized prompts and configurations.
 
 ## Overview
 
@@ -16,16 +16,16 @@ The migration system provides tools to:
 
 ```bash
 # Analyze your project
-npx claude-flow migrate analyze
+npx codex-flow migrate analyze
 
 # Run migration with dry-run preview
-npx claude-flow migrate --dry-run --verbose
+npx codex-flow migrate --dry-run --verbose
 
 # Migrate with selective strategy (recommended)
-npx claude-flow migrate --strategy selective --preserve-custom
+npx codex-flow migrate --strategy selective --preserve-custom
 
 # Rollback if needed
-npx claude-flow migrate rollback
+npx codex-flow migrate rollback
 ```
 
 ## Architecture
@@ -67,64 +67,64 @@ npx claude-flow migrate rollback
 
 ```bash
 # Basic analysis
-claude-flow migrate analyze
+codex-flow migrate analyze
 
 # Detailed analysis with output file
-claude-flow migrate analyze --detailed --output analysis.json
+codex-flow migrate analyze --detailed --output analysis.json
 
 # Check specific project
-claude-flow migrate analyze /path/to/project
+codex-flow migrate analyze /path/to/project
 ```
 
 ### Migration Commands
 
 ```bash
 # Preview changes (safe)
-claude-flow migrate --dry-run --verbose
+codex-flow migrate --dry-run --verbose
 
 # Full migration
-claude-flow migrate --strategy full
+codex-flow migrate --strategy full
 
 # Selective migration (recommended)
-claude-flow migrate --strategy selective --preserve-custom
+codex-flow migrate --strategy selective --preserve-custom
 
 # Merge migration for complex projects
-claude-flow migrate --strategy merge
+codex-flow migrate --strategy merge
 
 # Force migration without prompts
-claude-flow migrate --force
+codex-flow migrate --force
 
 # Skip post-migration validation
-claude-flow migrate --skip-validation
+codex-flow migrate --skip-validation
 ```
 
 ### Backup & Rollback Commands
 
 ```bash
 # List available backups
-claude-flow migrate rollback --list
+codex-flow migrate rollback --list
 
 # Rollback to latest backup
-claude-flow migrate rollback
+codex-flow migrate rollback
 
 # Rollback to specific backup
-claude-flow migrate rollback --timestamp 2024-01-01T12:00:00
+codex-flow migrate rollback --timestamp 2024-01-01T12:00:00
 
 # Force rollback without confirmation
-claude-flow migrate rollback --force
+codex-flow migrate rollback --force
 ```
 
 ### Validation Commands
 
 ```bash
 # Validate migration
-claude-flow migrate validate
+codex-flow migrate validate
 
 # Detailed validation report
-claude-flow migrate validate --verbose
+codex-flow migrate validate --verbose
 
 # Check project status
-claude-flow migrate status
+codex-flow migrate status
 ```
 
 ## Configuration
@@ -222,7 +222,7 @@ await rollback.rollback(backup.metadata.backupId);
 
 ```bash
 # For new projects without existing customizations
-claude-flow migrate --strategy full
+codex-flow migrate --strategy full
 ```
 
 **Result**: Clean installation of all optimized prompts and configurations.
@@ -231,10 +231,10 @@ claude-flow migrate --strategy full
 
 ```bash
 # Analyze first
-claude-flow migrate analyze --detailed
+codex-flow migrate analyze --detailed
 
 # Selective migration preserving customizations
-claude-flow migrate --strategy selective --preserve-custom
+codex-flow migrate --strategy selective --preserve-custom
 ```
 
 **Result**: Core files updated, custom commands preserved.
@@ -243,10 +243,10 @@ claude-flow migrate --strategy selective --preserve-custom
 
 ```bash
 # Use merge strategy for complex setups
-claude-flow migrate --strategy merge --preserve-custom
+codex-flow migrate --strategy merge --preserve-custom
 
 # Validate after migration
-claude-flow migrate validate --verbose
+codex-flow migrate validate --verbose
 ```
 
 **Result**: Configurations merged, custom content preserved.
@@ -255,10 +255,10 @@ claude-flow migrate validate --verbose
 
 ```bash
 # Preview all changes
-claude-flow migrate --dry-run --verbose
+codex-flow migrate --dry-run --verbose
 
 # Run actual migration if satisfied
-claude-flow migrate --strategy selective
+codex-flow migrate --strategy selective
 ```
 
 **Result**: Risk-free preview of all changes before applying.
@@ -270,7 +270,7 @@ claude-flow migrate --strategy selective
 find . -name ".claude" -type d | while read dir; do
   project_path=$(dirname "$dir")
   echo "Migrating $project_path"
-  claude-flow migrate "$project_path" --strategy selective --force
+  codex-flow migrate "$project_path" --strategy selective --force
 done
 ```
 
@@ -314,21 +314,21 @@ Multiple rollback options:
 ```bash
 # Check and fix permissions
 chmod -R u+w .claude/
-claude-flow migrate --strategy selective
+codex-flow migrate --strategy selective
 ```
 
 #### Custom Commands Not Preserved
 
 ```bash
 # Use preserve-custom flag
-claude-flow migrate --strategy selective --preserve-custom
+codex-flow migrate --strategy selective --preserve-custom
 ```
 
 #### Validation Failures
 
 ```bash
 # Run detailed validation
-claude-flow migrate validate --verbose
+codex-flow migrate validate --verbose
 
 # Check for missing files or corruption
 ls -la .claude/commands/
@@ -338,7 +338,7 @@ ls -la .claude/commands/
 
 ```bash
 # List available backups
-claude-flow migrate rollback --list
+codex-flow migrate rollback --list
 
 # Check backup integrity
 cat .claude-backup/*/backup-manifest.json
@@ -350,7 +350,7 @@ Enable detailed logging:
 
 ```bash
 export DEBUG=true
-claude-flow migrate --verbose
+codex-flow migrate --verbose
 ```
 
 ### Log Files
@@ -400,13 +400,13 @@ Automate migrations in CI/CD pipelines:
 # .github/workflows/migrate.yml
 steps:
   - name: Analyze Migration
-    run: claude-flow migrate analyze --output analysis.json
+    run: codex-flow migrate analyze --output analysis.json
 
   - name: Run Migration
-    run: claude-flow migrate --strategy selective --force
+    run: codex-flow migrate --strategy selective --force
 
   - name: Validate Migration
-    run: claude-flow migrate validate
+    run: codex-flow migrate validate
 ```
 
 ## Performance Considerations

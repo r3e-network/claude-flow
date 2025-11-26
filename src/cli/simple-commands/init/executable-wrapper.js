@@ -9,13 +9,13 @@ export async function createLocalExecutable(workingDir, dryRun = false) {
       // Create Windows batch file
       const wrapperScript = `@echo off
 REM Claude-Flow local wrapper
-REM This script ensures claude-flow runs from your project directory
+REM This script ensures codex-flow runs from your project directory
 
 set PROJECT_DIR=%CD%
 set PWD=%PROJECT_DIR%
 set CLAUDE_WORKING_DIR=%PROJECT_DIR%
 
-REM Try to find claude-flow binary
+REM Try to find codex-flow binary
 REM Check common locations for npm/npx installations
 
 REM 1. Local node_modules (npm install claude-flow)
@@ -33,23 +33,23 @@ if exist "%PROJECT_DIR%\\..\\node_modules\\.bin\\claude-flow.cmd" (
 )
 
 REM 3. Global installation (npm install -g claude-flow)
-where claude-flow >nul 2>nul
+where codex-flow >nul 2>nul
 if %ERRORLEVEL% EQU 0 (
   cd /d "%PROJECT_DIR%"
-  claude-flow %*
+  codex-flow %*
   exit /b %ERRORLEVEL%
 )
 
 REM 4. Fallback to npx (will download if needed)
 cd /d "%PROJECT_DIR%"
-npx claude-flow@latest %*
+npx codex-flow@latest %*
 `;
 
       // Write the Windows batch file
       if (!dryRun) {
         await writeFile(`${workingDir}/claude-flow.cmd`, wrapperScript, 'utf8');
         console.log('  ✓ Created local claude-flow.cmd executable wrapper');
-        console.log('    You can now use: claude-flow instead of npx claude-flow');
+        console.log('    You can now use: codex-flow instead of npx codex-flow');
       }
     } else {
       // Check if we're in development mode (claude-code-flow repo)
@@ -61,7 +61,7 @@ npx claude-flow@latest %*
       // Create Unix/Linux/Mac shell script
       const wrapperScript = `#!/usr/bin/env bash
 # Claude-Flow local wrapper
-# This script ensures claude-flow runs from your project directory
+# This script ensures codex-flow runs from your project directory
 
 # Save the current directory
 PROJECT_DIR="\${PWD}"
@@ -70,7 +70,7 @@ PROJECT_DIR="\${PWD}"
 export PWD="\${PROJECT_DIR}"
 export CLAUDE_WORKING_DIR="\${PROJECT_DIR}"
 
-# Try to find claude-flow binary
+# Try to find codex-flow binary
 # Check common locations for npm/npx installations
 
 ${
@@ -94,14 +94,14 @@ elif [ -f "\${PROJECT_DIR}/../node_modules/.bin/claude-flow" ]; then
   exec "\${PROJECT_DIR}/../node_modules/.bin/claude-flow" "$@"
 
 # 3. Global installation (npm install -g claude-flow)
-elif command -v claude-flow &> /dev/null; then
+elif command -v codex-flow &> /dev/null; then
   cd "\${PROJECT_DIR}"
-  exec claude-flow "$@"
+  exec codex-flow "$@"
 
 # 4. Fallback to npx (will download if needed)
 else
   cd "\${PROJECT_DIR}"
-  exec npx claude-flow@latest "$@"
+  exec npx codex-flow@latest "$@"
 fi
 `;
 
@@ -112,8 +112,8 @@ fi
         // Make it executable
         await chmod(`${workingDir}/claude-flow`, 0o755);
 
-        console.log('  ✓ Created local claude-flow executable wrapper');
-        console.log('    You can now use: ./claude-flow instead of npx claude-flow');
+        console.log('  ✓ Created local codex-flow executable wrapper');
+        console.log('    You can now use: ./codex-flow instead of npx codex-flow');
       }
     }
   } catch (err) {

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Claude-Flow Swarm Mode with Monitoring
+# Codex-Flow Swarm Mode with Monitoring
 
 # Find deno in the path
 DENO_PATH=$(which deno 2>/dev/null || echo "/home/codespace/.deno/bin/deno")

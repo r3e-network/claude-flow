@@ -1,5 +1,5 @@
 #!/bin/bash
-# Claude-Flow Swarm Mode Wrapper
+# Codex-Flow Swarm Mode Wrapper
 # This script wraps the swarm demo to work with the installed Deno
 
 # Find deno in the path

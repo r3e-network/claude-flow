@@ -363,4 +363,4 @@ console.log('Expected dimensions:', stats.dimensions);
 - [AgentDB Documentation](https://github.com/ruvnet/agentdb)
 - [HNSW Algorithm](https://github.com/nmslib/hnswlib)
 - [Vector Quantization](https://en.wikipedia.org/wiki/Vector_quantization)
-- [claude-flow Memory System](./README.md)
+- [codex-flow Memory System](./README.md)

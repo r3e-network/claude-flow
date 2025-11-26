@@ -33,15 +33,15 @@ This project uses SPARC (Specification, Pseudocode, Architecture, Refinement, Co
 ## SPARC Commands
 
 ### Core Commands
-- `npx claude-flow sparc modes` - List available modes
-- `npx claude-flow sparc run <mode> "<task>"` - Execute specific mode
-- `npx claude-flow sparc tdd "<feature>"` - Run complete TDD workflow
-- `npx claude-flow sparc info <mode>` - Get mode details
+- `npx codex-flow sparc modes` - List available modes
+- `npx codex-flow sparc run <mode> "<task>"` - Execute specific mode
+- `npx codex-flow sparc tdd "<feature>"` - Run complete TDD workflow
+- `npx codex-flow sparc info <mode>` - Get mode details
 
 ### Batchtools Commands
-- `npx claude-flow sparc batch <modes> "<task>"` - Parallel execution
-- `npx claude-flow sparc pipeline "<task>"` - Full pipeline processing
-- `npx claude-flow sparc concurrent <mode> "<tasks-file>"` - Multi-task processing
+- `npx codex-flow sparc batch <modes> "<task>"` - Parallel execution
+- `npx codex-flow sparc pipeline "<task>"` - Full pipeline processing
+- `npx codex-flow sparc concurrent <mode> "<tasks-file>"` - Multi-task processing
 
 ### Build Commands
 - `npm run build` - Build project
@@ -121,7 +121,7 @@ This project uses SPARC (Specification, Pseudocode, Architecture, Refinement, Co
 
 ```bash
 # Add Claude Flow MCP server
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+claude mcp add codex-flow npx codex-flow@alpha mcp start
 ```
 
 ## MCP Tool Categories
@@ -147,20 +147,20 @@ claude mcp add claude-flow npx claude-flow@alpha mcp start
 
 **1️⃣ BEFORE Work:**
 ```bash
-npx claude-flow@alpha hooks pre-task --description "[task]"
-npx claude-flow@alpha hooks session-restore --session-id "swarm-[id]"
+npx codex-flow@alpha hooks pre-task --description "[task]"
+npx codex-flow@alpha hooks session-restore --session-id "swarm-[id]"
 ```
 
 **2️⃣ DURING Work:**
 ```bash
-npx claude-flow@alpha hooks post-edit --file "[file]" --memory-key "swarm/[agent]/[step]"
-npx claude-flow@alpha hooks notify --message "[what was done]"
+npx codex-flow@alpha hooks post-edit --file "[file]" --memory-key "swarm/[agent]/[step]"
+npx codex-flow@alpha hooks notify --message "[what was done]"
 ```
 
 **3️⃣ AFTER Work:**
 ```bash
-npx claude-flow@alpha hooks post-task --task-id "[task]"
-npx claude-flow@alpha hooks session-end --export-metrics true
+npx codex-flow@alpha hooks post-task --task-id "[task]"
+npx codex-flow@alpha hooks session-end --export-metrics true
 ```
 
 ## 🎯 Concurrent Execution Examples
@@ -169,10 +169,10 @@ npx claude-flow@alpha hooks session-end --export-metrics true
 ```javascript
 [BatchTool]:
   // Initialize swarm
-  mcp__claude-flow__swarm_init { topology: "mesh", maxAgents: 6 }
-  mcp__claude-flow__agent_spawn { type: "researcher" }
-  mcp__claude-flow__agent_spawn { type: "coder" }
-  mcp__claude-flow__agent_spawn { type: "tester" }
+  mcp__codex-flow__swarm_init { topology: "mesh", maxAgents: 6 }
+  mcp__codex-flow__agent_spawn { type: "researcher" }
+  mcp__codex-flow__agent_spawn { type: "coder" }
+  mcp__codex-flow__agent_spawn { type: "tester" }
   
   // Spawn agents with Task tool
   Task("Research agent: Analyze requirements...")
@@ -197,7 +197,7 @@ npx claude-flow@alpha hooks session-end --export-metrics true
 
 ### ❌ WRONG (Multiple Messages):
 ```javascript
-Message 1: mcp__claude-flow__swarm_init
+Message 1: mcp__codex-flow__swarm_init
 Message 2: Task("agent 1")
 Message 3: TodoWrite { todos: [single todo] }
 Message 4: Write "file.js"

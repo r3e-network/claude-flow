@@ -41,15 +41,15 @@ if (!objective && !flags.help) {
 🐝 Claude Flow Advanced Swarm System
 
 USAGE:
-  claude-flow swarm <objective> [options]
+  codex-flow swarm <objective> [options]
 
 EXAMPLES:
-  claude-flow swarm "Build a REST API" --strategy development
-  claude-flow swarm "Research cloud architecture" --strategy research --ui
-  claude-flow swarm "Analyze data trends" --strategy analysis --parallel
-  claude-flow swarm "Optimize performance" --distributed --monitor
+  codex-flow swarm "Build a REST API" --strategy development
+  codex-flow swarm "Research cloud architecture" --strategy research --ui
+  codex-flow swarm "Analyze data trends" --strategy analysis --parallel
+  codex-flow swarm "Optimize performance" --distributed --monitor
 
-Run 'claude-flow swarm --help' for full options
+Run 'codex-flow swarm --help' for full options
 `);
   process.exit(1);
 }

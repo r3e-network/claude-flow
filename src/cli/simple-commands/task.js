@@ -190,9 +190,9 @@ async function listTasks(subArgs, flags) {
   } else {
     console.log('📋 No tasks in queue' + (filter ? ` with status: ${filter}` : ''));
     console.log('\nTo create tasks:');
-    console.log('  claude-flow task create research "Market analysis"');
-    console.log('  claude-flow task create code "Implement API"');
-    console.log('  claude-flow task create analysis "Data processing"');
+    console.log('  codex-flow task create research "Market analysis"');
+    console.log('  codex-flow task create code "Implement API"');
+    console.log('  codex-flow task create analysis "Data processing"');
   }
 }
 
@@ -284,8 +284,8 @@ function showTaskHelp() {
   console.log('  --verbose, -v                    Show detailed output');
   console.log();
   console.log('Examples:');
-  console.log('  claude-flow task create research "Market analysis" --priority 8');
-  console.log('  claude-flow task list --filter running');
-  console.log('  claude-flow task workflow examples/development-workflow.json');
-  console.log('  claude-flow task coordination status');
+  console.log('  codex-flow task create research "Market analysis" --priority 8');
+  console.log('  codex-flow task list --filter running');
+  console.log('  codex-flow task workflow examples/development-workflow.json');
+  console.log('  codex-flow task coordination status');
 }

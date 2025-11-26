@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Codex-Flow local wrapper
+# Ensures codex-flow runs from your project directory
+
+# Save the current directory
+PROJECT_DIR="${PWD}"
+
+# Set environment to ensure correct working directory
+export PWD="${PROJECT_DIR}"
+export CODEX_WORKING_DIR="${PROJECT_DIR}"
+
+# Try to find codex-flow binary (local, monorepo, global, fallback to npx)
+
+# Development mode - use local bin
+if [ -f "/workspaces/claude-code-flow/bin/codex-flow" ]; then
+  cd "${PROJECT_DIR}"
+  exec "/workspaces/claude-code-flow/bin/codex-flow" "$@"
+fi
+
+# 1. Local node_modules
+if [ -f "${PROJECT_DIR}/node_modules/.bin/codex-flow" ]; then
+  cd "${PROJECT_DIR}"
+  exec "${PROJECT_DIR}/node_modules/.bin/codex-flow" "$@"
+
+# 2. Parent node_modules (monorepo)
+elif [ -f "${PROJECT_DIR}/../node_modules/.bin/codex-flow" ]; then
+  cd "${PROJECT_DIR}"
+  exec "${PROJECT_DIR}/../node_modules/.bin/codex-flow" "$@"
+
+# 3. Global installation
+elif command -v codex-flow &> /dev/null; then
+  cd "${PROJECT_DIR}"
+  exec codex-flow "$@"
+
+# 4. Fallback to npx (will download if needed)
+else
+  cd "${PROJECT_DIR}"
+  exec npx codex-flow@latest "$@"
+fi

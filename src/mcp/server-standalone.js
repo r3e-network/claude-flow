@@ -52,7 +52,7 @@ async function main() {
 
     logger.success('[claude-flow-mcp] Server started successfully', {
       transport: 'stdio',
-      tools: 'claude-flow + swarm + ruv-swarm',
+      tools: 'codex-flow + swarm + ruv-swarm',
       phase4Tools: ['agents_spawn_parallel', 'query_control', 'query_list']
     });
 

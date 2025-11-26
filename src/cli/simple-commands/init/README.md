@@ -1,6 +1,6 @@
 # Init Command - Modular Structure
 
-This directory contains the modular implementation of the `claude-flow init` command, which initializes Claude Code integration files for projects.
+This directory contains the modular implementation of the `codex-flow init` command, which initializes Claude Code integration files for projects.
 
 ## Directory Structure
 
@@ -79,13 +79,13 @@ Overwrites existing files if they already exist.
 
 ```bash
 # Recommended first-time setup with SPARC
-npx claude-flow@latest init --sparc
+npx codex-flow@latest init --sparc
 
 # Minimal setup
-npx claude-flow init --minimal
+npx codex-flow init --minimal
 
 # Force overwrite existing files
-npx claude-flow init --force
+npx codex-flow init --force
 ```
 
 ## Module Responsibilities

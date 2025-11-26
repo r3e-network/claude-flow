@@ -60,7 +60,7 @@ export class MCPIntegrator {
     // Claude Flow MCP tools
     this.tools.set('claude-flow', {
       name: 'claude-flow',
-      server: 'npx claude-flow@alpha mcp start',
+      server: 'npx codex-flow@alpha mcp start',
       functions: [
         {
           name: 'swarm_init',
@@ -402,7 +402,7 @@ export class MCPIntegrator {
     maxAgents: number;
     strategy: string;
   }): Promise<MCPResult> {
-    // Try claude-flow first, then fallback to other tools
+    // Try codex-flow first, then fallback to other tools
     const toolPriority = ['claude-flow', 'ruv-swarm', 'flow-nexus'];
 
     for (const toolName of toolPriority) {

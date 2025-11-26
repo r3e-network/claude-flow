@@ -299,7 +299,7 @@ export class StateManager extends EventEmitter {
     try {
       // Capture application configuration
       const configPaths = [
-        './claude-flow.config.json',
+        './codex-flow.config.json',
         './package.json',
         './tsconfig.json',
         './.env'

@@ -155,18 +155,18 @@ function showSwarmHelp() {
 🐝 Claude Flow Advanced Swarm System
 
 USAGE:
-  claude-flow swarm <objective> [options]
+  codex-flow swarm <objective> [options]
 
 EXAMPLES:
-  claude-flow swarm "Build a REST API with authentication"
-  claude-flow swarm "Research cloud architecture patterns" --strategy research
-  claude-flow swarm "Analyze database performance" --max-agents 3 --parallel
-  claude-flow swarm "Develop user registration feature" --mode distributed
-  claude-flow swarm "Optimize React app performance" --strategy optimization
-  claude-flow swarm "Create microservice" --executor  # Use built-in executor
-  claude-flow swarm "Build API" --claude  # Open Claude Code CLI
-  claude-flow swarm "Build API endpoints" --output-format json  # Get JSON output
-  claude-flow swarm "Research AI trends" --output-format json --output-file results.json
+  codex-flow swarm "Build a REST API with authentication"
+  codex-flow swarm "Research cloud architecture patterns" --strategy research
+  codex-flow swarm "Analyze database performance" --max-agents 3 --parallel
+  codex-flow swarm "Develop user registration feature" --mode distributed
+  codex-flow swarm "Optimize React app performance" --strategy optimization
+  codex-flow swarm "Create microservice" --executor  # Use built-in executor
+  codex-flow swarm "Build API" --codex  # Open Codex CLI
+  codex-flow swarm "Build API endpoints" --output-format json  # Get JSON output
+  codex-flow swarm "Research AI trends" --output-format json --output-file results.json
 
 DEFAULT BEHAVIOR:
   Swarm attempts to open Claude Code CLI with comprehensive MCP tool instructions
@@ -450,10 +450,10 @@ Step A: Optional MCP Coordination Setup (Single Message):
 \`\`\`javascript
 [MCP Tools - Coordination ONLY]:
   // Set up coordination topology (OPTIONAL)
-  mcp__claude-flow__swarm_init {"topology": "mesh", "maxAgents": ${maxAgents}}
-  mcp__claude-flow__agent_spawn {"type": "coordinator", "name": "SwarmLead"}
-  mcp__claude-flow__memory_store {"key": "swarm/objective", "value": "${objective}"}
-  mcp__claude-flow__memory_store {"key": "swarm/config", "value": {"strategy": "${strategy}"}}
+  mcp__codex-flow__swarm_init {"topology": "mesh", "maxAgents": ${maxAgents}}
+  mcp__codex-flow__agent_spawn {"type": "coordinator", "name": "SwarmLead"}
+  mcp__codex-flow__memory_store {"key": "swarm/objective", "value": "${objective}"}
+  mcp__codex-flow__memory_store {"key": "swarm/config", "value": {"strategy": "${strategy}"}}
 \`\`\`
 
 Step B: REQUIRED - Claude Code Task Tool for ACTUAL Agent Execution (Single Message):
@@ -490,30 +490,30 @@ Step B: REQUIRED - Claude Code Task Tool for ACTUAL Agent Execution (Single Mess
 \`\`\`javascript
 [Single Message]:
   // Assign all tasks
-  mcp__claude-flow__task_assign {"taskId": "research-1", "agentId": "researcher-1"}
-  mcp__claude-flow__task_assign {"taskId": "design-1", "agentId": "architect-1"}
-  mcp__claude-flow__task_assign {"taskId": "code-1", "agentId": "coder-1"}
-  mcp__claude-flow__task_assign {"taskId": "code-2", "agentId": "coder-2"}
+  mcp__codex-flow__task_assign {"taskId": "research-1", "agentId": "researcher-1"}
+  mcp__codex-flow__task_assign {"taskId": "design-1", "agentId": "architect-1"}
+  mcp__codex-flow__task_assign {"taskId": "code-1", "agentId": "coder-1"}
+  mcp__codex-flow__task_assign {"taskId": "code-2", "agentId": "coder-2"}
   
   // Communicate to all agents
-  mcp__claude-flow__agent_communicate {"to": "all", "message": "Begin phase 1"}
+  mcp__codex-flow__agent_communicate {"to": "all", "message": "Begin phase 1"}
   
   // Update multiple task statuses
-  mcp__claude-flow__task_update {"taskId": "research-1", "status": "in_progress"}
-  mcp__claude-flow__task_update {"taskId": "design-1", "status": "pending"}
+  mcp__codex-flow__task_update {"taskId": "research-1", "status": "in_progress"}
+  mcp__codex-flow__task_update {"taskId": "design-1", "status": "pending"}
 \`\`\`
 
 3️⃣ **MEMORY COORDINATION** - Store/retrieve in batches:
 \`\`\`javascript
 [Single Message]:
   // Store multiple findings
-  mcp__claude-flow__memory_store {"key": "research/requirements", "value": {...}}
-  mcp__claude-flow__memory_store {"key": "research/constraints", "value": {...}}
-  mcp__claude-flow__memory_store {"key": "architecture/decisions", "value": {...}}
+  mcp__codex-flow__memory_store {"key": "research/requirements", "value": {...}}
+  mcp__codex-flow__memory_store {"key": "research/constraints", "value": {...}}
+  mcp__codex-flow__memory_store {"key": "architecture/decisions", "value": {...}}
   
   // Retrieve related data
-  mcp__claude-flow__memory_retrieve {"key": "research/*"}
-  mcp__claude-flow__memory_search {"pattern": "architecture"}
+  mcp__codex-flow__memory_retrieve {"key": "research/*"}
+  mcp__codex-flow__memory_search {"pattern": "architecture"}
 \`\`\`
 
 4️⃣ **FILE & CODE OPERATIONS** - Parallel execution:
@@ -530,27 +530,27 @@ Step B: REQUIRED - Claude Code Task Tool for ACTUAL Agent Execution (Single Mess
   Write {"file_path": "/tests/auth.test.js", "content": "..."}
   
   // Update memory with results
-  mcp__claude-flow__memory_store {"key": "code/api/auth", "value": "implemented"}
-  mcp__claude-flow__memory_store {"key": "code/api/users", "value": "implemented"}
+  mcp__codex-flow__memory_store {"key": "code/api/auth", "value": "implemented"}
+  mcp__codex-flow__memory_store {"key": "code/api/users", "value": "implemented"}
 \`\`\`
 
 5️⃣ **MONITORING & STATUS** - Combined checks:
 \`\`\`javascript
 [Single Message]:
-  mcp__claude-flow__swarm_monitor {}
-  mcp__claude-flow__swarm_status {}
-  mcp__claude-flow__agent_list {"status": "active"}
-  mcp__claude-flow__task_status {"includeCompleted": false}
+  mcp__codex-flow__swarm_monitor {}
+  mcp__codex-flow__swarm_status {}
+  mcp__codex-flow__agent_list {"status": "active"}
+  mcp__codex-flow__task_status {"includeCompleted": false}
   TodoRead {}
 \`\`\`
 
 ❌ NEVER DO THIS (Sequential = SLOW):
 \`\`\`
-Message 1: mcp__claude-flow__agent_spawn
-Message 2: mcp__claude-flow__agent_spawn
+Message 1: mcp__codex-flow__agent_spawn
+Message 2: mcp__codex-flow__agent_spawn
 Message 3: TodoWrite (one todo)
 Message 4: Read file
-Message 5: mcp__claude-flow__memory_store
+Message 5: mcp__codex-flow__memory_store
 \`\`\`
 
 ✅ ALWAYS DO THIS (Batch = FAST):
@@ -582,13 +582,13 @@ ${agentRecommendations}
    Example:
    \`\`\`
    [BatchTool]:
-     mcp__claude-flow__agent_spawn (coordinator)
-     mcp__claude-flow__agent_spawn (architect)
-     mcp__claude-flow__agent_spawn (coder-1)
-     mcp__claude-flow__agent_spawn (coder-2)
-     mcp__claude-flow__agent_spawn (tester)
-     mcp__claude-flow__memory_store { key: "init", value: {...} }
-     mcp__claude-flow__task_create { name: "Main", subtasks: [...] }
+     mcp__codex-flow__agent_spawn (coordinator)
+     mcp__codex-flow__agent_spawn (architect)
+     mcp__codex-flow__agent_spawn (coder-1)
+     mcp__codex-flow__agent_spawn (coder-2)
+     mcp__codex-flow__agent_spawn (tester)
+     mcp__codex-flow__memory_store { key: "init", value: {...} }
+     mcp__codex-flow__task_create { name: "Main", subtasks: [...] }
      TodoWrite { todos: [5-10 todos at once] }
    \`\`\`
 
@@ -605,28 +605,28 @@ ${agentRecommendations}
 🔧 AVAILABLE MCP TOOLS FOR SWARM COORDINATION:
 
 📊 MONITORING & STATUS:
-- mcp__claude-flow__swarm_status - Check current swarm status and agent activity
-- mcp__claude-flow__swarm_monitor - Real-time monitoring of swarm execution
-- mcp__claude-flow__agent_list - List all active agents and their capabilities
-- mcp__claude-flow__task_status - Check task progress and dependencies
+- mcp__codex-flow__swarm_status - Check current swarm status and agent activity
+- mcp__codex-flow__swarm_monitor - Real-time monitoring of swarm execution
+- mcp__codex-flow__agent_list - List all active agents and their capabilities
+- mcp__codex-flow__task_status - Check task progress and dependencies
 
 🧠 MEMORY & KNOWLEDGE:
-- mcp__claude-flow__memory_store - Store knowledge in swarm collective memory
-- mcp__claude-flow__memory_retrieve - Retrieve shared knowledge from memory
-- mcp__claude-flow__memory_search - Search collective memory by pattern
-- mcp__claude-flow__memory_sync - Synchronize memory across agents
+- mcp__codex-flow__memory_store - Store knowledge in swarm collective memory
+- mcp__codex-flow__memory_retrieve - Retrieve shared knowledge from memory
+- mcp__codex-flow__memory_search - Search collective memory by pattern
+- mcp__codex-flow__memory_sync - Synchronize memory across agents
 
 🤖 AGENT MANAGEMENT:
-- mcp__claude-flow__agent_spawn - Spawn specialized agents for tasks
-- mcp__claude-flow__agent_assign - Assign tasks to specific agents
-- mcp__claude-flow__agent_communicate - Send messages between agents
-- mcp__claude-flow__agent_coordinate - Coordinate agent activities
+- mcp__codex-flow__agent_spawn - Spawn specialized agents for tasks
+- mcp__codex-flow__agent_assign - Assign tasks to specific agents
+- mcp__codex-flow__agent_communicate - Send messages between agents
+- mcp__codex-flow__agent_coordinate - Coordinate agent activities
 
 📋 TASK ORCHESTRATION:
-- mcp__claude-flow__task_create - Create new tasks with dependencies
-- mcp__claude-flow__task_assign - Assign tasks to agents
-- mcp__claude-flow__task_update - Update task status and progress
-- mcp__claude-flow__task_complete - Mark tasks as complete with results
+- mcp__codex-flow__task_create - Create new tasks with dependencies
+- mcp__codex-flow__task_assign - Assign tasks to agents
+- mcp__codex-flow__task_update - Update task status and progress
+- mcp__codex-flow__task_complete - Mark tasks as complete with results
 
 🎛️ COORDINATION MODES:
 1. CENTRALIZED (default): Single coordinator manages all agents
@@ -654,46 +654,46 @@ ${
    S - Specification Phase (Single BatchTool):
    \`\`\`
    [BatchTool]:
-     mcp__claude-flow__memory_store { key: "specs/requirements", value: {...} }
-     mcp__claude-flow__task_create { name: "Requirement 1" }
-     mcp__claude-flow__task_create { name: "Requirement 2" }
-     mcp__claude-flow__task_create { name: "Requirement 3" }
-     mcp__claude-flow__agent_spawn { type: "researcher", name: "SpecAnalyst" }
+     mcp__codex-flow__memory_store { key: "specs/requirements", value: {...} }
+     mcp__codex-flow__task_create { name: "Requirement 1" }
+     mcp__codex-flow__task_create { name: "Requirement 2" }
+     mcp__codex-flow__task_create { name: "Requirement 3" }
+     mcp__codex-flow__agent_spawn { type: "researcher", name: "SpecAnalyst" }
    \`\`\`
    
    P - Pseudocode Phase (Single BatchTool):
    \`\`\`
    [BatchTool]:
-     mcp__claude-flow__memory_store { key: "pseudocode/main", value: {...} }
-     mcp__claude-flow__task_create { name: "Design API" }
-     mcp__claude-flow__task_create { name: "Design Data Model" }
-     mcp__claude-flow__agent_communicate { to: "all", message: "Review design" }
+     mcp__codex-flow__memory_store { key: "pseudocode/main", value: {...} }
+     mcp__codex-flow__task_create { name: "Design API" }
+     mcp__codex-flow__task_create { name: "Design Data Model" }
+     mcp__codex-flow__agent_communicate { to: "all", message: "Review design" }
    \`\`\`
    
    A - Architecture Phase (Single BatchTool):
    \`\`\`
    [BatchTool]:
-     mcp__claude-flow__agent_spawn { type: "architect", name: "LeadArchitect" }
-     mcp__claude-flow__memory_store { key: "architecture/decisions", value: {...} }
-     mcp__claude-flow__task_create { name: "Backend", subtasks: [...] }
-     mcp__claude-flow__task_create { name: "Frontend", subtasks: [...] }
+     mcp__codex-flow__agent_spawn { type: "architect", name: "LeadArchitect" }
+     mcp__codex-flow__memory_store { key: "architecture/decisions", value: {...} }
+     mcp__codex-flow__task_create { name: "Backend", subtasks: [...] }
+     mcp__codex-flow__task_create { name: "Frontend", subtasks: [...] }
    \`\`\`
    
    R - Refinement Phase (Single BatchTool):
    \`\`\`
    [BatchTool]:
-     mcp__claude-flow__swarm_monitor {}
-     mcp__claude-flow__task_update { taskId: "1", progress: 50 }
-     mcp__claude-flow__task_update { taskId: "2", progress: 75 }
-     mcp__claude-flow__memory_store { key: "learnings/iteration1", value: {...} }
+     mcp__codex-flow__swarm_monitor {}
+     mcp__codex-flow__task_update { taskId: "1", progress: 50 }
+     mcp__codex-flow__task_update { taskId: "2", progress: 75 }
+     mcp__codex-flow__memory_store { key: "learnings/iteration1", value: {...} }
    \`\`\`
    
    C - Completion Phase (Single BatchTool):
    \`\`\`
    [BatchTool]:
-     mcp__claude-flow__task_complete { taskId: "1", results: {...} }
-     mcp__claude-flow__task_complete { taskId: "2", results: {...} }
-     mcp__claude-flow__memory_retrieve { pattern: "**/*" }
+     mcp__codex-flow__task_complete { taskId: "1", results: {...} }
+     mcp__codex-flow__task_complete { taskId: "2", results: {...} }
+     mcp__codex-flow__memory_retrieve { pattern: "**/*" }
      TodoWrite { todos: [{content: "Final review", status: "completed"}] }
    \`\`\`
 `
@@ -703,27 +703,27 @@ ${
    Initial Setup (Single BatchTool):
    \`\`\`
    [BatchTool]:
-     mcp__claude-flow__task_create { name: "Main", subtasks: [...] }
-     mcp__claude-flow__agent_spawn { type: "coordinator" }
-     mcp__claude-flow__agent_spawn { type: "coder" }
-     mcp__claude-flow__agent_spawn { type: "tester" }
-     mcp__claude-flow__memory_store { key: "init", value: {...} }
+     mcp__codex-flow__task_create { name: "Main", subtasks: [...] }
+     mcp__codex-flow__agent_spawn { type: "coordinator" }
+     mcp__codex-flow__agent_spawn { type: "coder" }
+     mcp__codex-flow__agent_spawn { type: "tester" }
+     mcp__codex-flow__memory_store { key: "init", value: {...} }
    \`\`\`
    
    Task Assignment (Single BatchTool):
    \`\`\`
    [BatchTool]:
-     mcp__claude-flow__task_assign { taskId: "1", agentId: "agent-1" }
-     mcp__claude-flow__task_assign { taskId: "2", agentId: "agent-2" }
-     mcp__claude-flow__task_assign { taskId: "3", agentId: "agent-3" }
+     mcp__codex-flow__task_assign { taskId: "1", agentId: "agent-1" }
+     mcp__codex-flow__task_assign { taskId: "2", agentId: "agent-2" }
+     mcp__codex-flow__task_assign { taskId: "3", agentId: "agent-3" }
    \`\`\`
    
    Monitoring & Updates (Single BatchTool):
    \`\`\`
    [BatchTool]:
-     mcp__claude-flow__swarm_monitor {}
-     mcp__claude-flow__agent_communicate { to: "all", message: "Status update" }
-     mcp__claude-flow__memory_store { key: "progress", value: {...} }
+     mcp__codex-flow__swarm_monitor {}
+     mcp__codex-flow__agent_communicate { to: "all", message: "Status update" }
+     mcp__codex-flow__memory_store { key: "progress", value: {...} }
    \`\`\`
 `
 }
@@ -758,24 +758,24 @@ TESTER:
 📝 EXAMPLE MCP TOOL USAGE PATTERNS:
 
 1. Starting a swarm:
-   mcp__claude-flow__agent_spawn {"type": "coordinator", "name": "SwarmLead"}
-   mcp__claude-flow__memory_store {"key": "objective", "value": "${objective}"}
-   mcp__claude-flow__task_create {"name": "Main Objective", "type": "parent"}
+   mcp__codex-flow__agent_spawn {"type": "coordinator", "name": "SwarmLead"}
+   mcp__codex-flow__memory_store {"key": "objective", "value": "${objective}"}
+   mcp__codex-flow__task_create {"name": "Main Objective", "type": "parent"}
 
 2. Spawning worker agents:
-   mcp__claude-flow__agent_spawn {"type": "researcher", "capabilities": ["web-search"]}
-   mcp__claude-flow__agent_spawn {"type": "coder", "capabilities": ["python", "testing"]}
-   mcp__claude-flow__task_assign {"taskId": "task-123", "agentId": "agent-456"}
+   mcp__codex-flow__agent_spawn {"type": "researcher", "capabilities": ["web-search"]}
+   mcp__codex-flow__agent_spawn {"type": "coder", "capabilities": ["python", "testing"]}
+   mcp__codex-flow__task_assign {"taskId": "task-123", "agentId": "agent-456"}
 
 3. Coordinating work:
-   mcp__claude-flow__agent_communicate {"to": "agent-123", "message": "Begin phase 2"}
-   mcp__claude-flow__memory_store {"key": "phase1/results", "value": {...}}
-   mcp__claude-flow__task_update {"taskId": "task-123", "progress": 75}
+   mcp__codex-flow__agent_communicate {"to": "agent-123", "message": "Begin phase 2"}
+   mcp__codex-flow__memory_store {"key": "phase1/results", "value": {...}}
+   mcp__codex-flow__task_update {"taskId": "task-123", "progress": 75}
 
 4. Monitoring progress:
-   mcp__claude-flow__swarm_monitor {}
-   mcp__claude-flow__task_status {"includeCompleted": true}
-   mcp__claude-flow__agent_list {"status": "active"}
+   mcp__codex-flow__swarm_monitor {}
+   mcp__codex-flow__task_status {"includeCompleted": true}
+   mcp__codex-flow__agent_list {"status": "active"}
 
 💾 MEMORY PATTERNS:
 
@@ -853,9 +853,9 @@ The swarm should be self-documenting - use memory_store to save all important in
         console.log('\n💡 Pro Tips:');
         console.log('─'.repeat(30));
         console.log('• Use TodoWrite to track parallel tasks');
-        console.log('• Store results with mcp__claude-flow__memory_usage');
-        console.log('• Monitor progress with mcp__claude-flow__swarm_monitor');
-        console.log('• Check task status with mcp__claude-flow__task_status');
+        console.log('• Store results with mcp__codex-flow__memory_usage');
+        console.log('• Monitor progress with mcp__codex-flow__swarm_monitor');
+        console.log('• Check task status with mcp__codex-flow__task_status');
         
         // Set up clean termination
         const cleanup = () => {
@@ -912,8 +912,8 @@ The swarm should be self-documenting - use memory_store to save all important in
           console.log('\nWould spawn Claude Code with swarm objective:');
           console.log(`📋 Objective: ${objective}`);
           console.log('\nOptions:');
-          console.log('  • Use --executor flag for built-in executor: claude-flow swarm "objective" --executor');
-          console.log('  • Use --claude flag to open Claude Code CLI: claude-flow swarm "objective" --claude');
+          console.log('  • Use --executor flag for built-in executor: codex-flow swarm "objective" --executor');
+          console.log('  • Use --claude flag to open Claude Code CLI: codex-flow swarm "objective" --claude');
         } else {
           // In non-interactive mode, output JSON error
           console.error(JSON.stringify({
@@ -1127,7 +1127,7 @@ exit 0
 
         console.log(`\n✅ Swarm launched in background!`);
         console.log(`📄 Logs: tail -f ${logFile}`);
-        console.log(`📊 Status: claude-flow swarm status ${swarmId}`);
+        console.log(`📊 Status: codex-flow swarm status ${swarmId}`);
         console.log(`\nThe swarm will continue running independently.`);
 
         // Exit immediately
@@ -1177,7 +1177,7 @@ exit 0
       console.log(`\n⚠️  Background execution requires the claude-flow-swarm-bg script.`);
       console.log(`\nFor true background execution, use:`);
       console.log(
-        `  nohup claude-flow swarm "${objective}" ${Object.entries(flags)
+        `  nohup codex-flow swarm "${objective}" ${Object.entries(flags)
           .filter(([k, v]) => k !== 'background' && v)
           .map(([k, v]) => `--${k}${v !== true ? ` ${v}` : ''}`)
           .join(' ')} > swarm.log 2>&1 &`,
@@ -1498,13 +1498,13 @@ Begin execution now. Create all necessary files and provide a complete, working 
 🐝 Claude Flow Advanced Swarm System
 
 USAGE:
-  claude-flow swarm <objective> [options]
+  codex-flow swarm <objective> [options]
 
 EXAMPLES:
-  claude-flow swarm "Build a REST API" --strategy development
-  claude-flow swarm "Research cloud architecture" --strategy research --ui
-  claude-flow swarm "Analyze data trends" --strategy analysis --parallel
-  claude-flow swarm "Optimize performance" --distributed --monitor
+  codex-flow swarm "Build a REST API" --strategy development
+  codex-flow swarm "Research cloud architecture" --strategy research --ui
+  codex-flow swarm "Analyze data trends" --strategy analysis --parallel
+  codex-flow swarm "Optimize performance" --distributed --monitor
 
 STRATEGIES:
   auto           Automatically determine best approach (default)
@@ -2080,12 +2080,12 @@ function getAgentRecommendations(strategy, maxAgents, objective) {
 
 \`\`\`
 [BatchTool - Single Message]:
-  mcp__claude-flow__agent_spawn {"type": "coordinator", "name": "SwarmLead"}
-  mcp__claude-flow__agent_spawn {"type": "researcher", "name": "RequirementsAnalyst"}
-  mcp__claude-flow__agent_spawn {"type": "architect", "name": "SystemDesigner"}
-  mcp__claude-flow__memory_store {"key": "swarm/objective", "value": "${objective}"}
-  mcp__claude-flow__task_create {"name": "Analyze Requirements", "assignTo": "RequirementsAnalyst"}
-  mcp__claude-flow__task_create {"name": "Design Architecture", "assignTo": "SystemDesigner", "dependsOn": ["Analyze Requirements"]}
+  mcp__codex-flow__agent_spawn {"type": "coordinator", "name": "SwarmLead"}
+  mcp__codex-flow__agent_spawn {"type": "researcher", "name": "RequirementsAnalyst"}
+  mcp__codex-flow__agent_spawn {"type": "architect", "name": "SystemDesigner"}
+  mcp__codex-flow__memory_store {"key": "swarm/objective", "value": "${objective}"}
+  mcp__codex-flow__task_create {"name": "Analyze Requirements", "assignTo": "RequirementsAnalyst"}
+  mcp__codex-flow__task_create {"name": "Design Architecture", "assignTo": "SystemDesigner", "dependsOn": ["Analyze Requirements"]}
   TodoWrite {"todos": [
     {"id": "1", "content": "Initialize swarm coordination", "status": "completed", "priority": "high"},
     {"id": "2", "content": "Analyze objective requirements", "status": "in_progress", "priority": "high"},
@@ -2100,16 +2100,16 @@ function getAgentRecommendations(strategy, maxAgents, objective) {
 
 \`\`\`
 [BatchTool - Single Message]:
-  mcp__claude-flow__agent_spawn {"type": "coordinator", "name": "ResearchLead"}
-  mcp__claude-flow__agent_spawn {"type": "researcher", "name": "PrimaryInvestigator"}
-  mcp__claude-flow__agent_spawn {"type": "analyst", "name": "DataScientist"}
-  mcp__claude-flow__agent_spawn {"type": "researcher", "name": "LiteratureExpert"}
-  mcp__claude-flow__agent_spawn {"type": "analyst", "name": "InsightsCompiler"}
-  mcp__claude-flow__memory_store {"key": "research/objective", "value": "${objective}"}
-  mcp__claude-flow__task_create {"name": "Literature Review", "assignTo": "LiteratureExpert"}
-  mcp__claude-flow__task_create {"name": "Primary Research", "assignTo": "PrimaryInvestigator"}
-  mcp__claude-flow__task_create {"name": "Data Analysis", "assignTo": "DataScientist"}
-  mcp__claude-flow__task_create {"name": "Compile Insights", "assignTo": "InsightsCompiler", "dependsOn": ["Literature Review", "Primary Research", "Data Analysis"]}
+  mcp__codex-flow__agent_spawn {"type": "coordinator", "name": "ResearchLead"}
+  mcp__codex-flow__agent_spawn {"type": "researcher", "name": "PrimaryInvestigator"}
+  mcp__codex-flow__agent_spawn {"type": "analyst", "name": "DataScientist"}
+  mcp__codex-flow__agent_spawn {"type": "researcher", "name": "LiteratureExpert"}
+  mcp__codex-flow__agent_spawn {"type": "analyst", "name": "InsightsCompiler"}
+  mcp__codex-flow__memory_store {"key": "research/objective", "value": "${objective}"}
+  mcp__codex-flow__task_create {"name": "Literature Review", "assignTo": "LiteratureExpert"}
+  mcp__codex-flow__task_create {"name": "Primary Research", "assignTo": "PrimaryInvestigator"}
+  mcp__codex-flow__task_create {"name": "Data Analysis", "assignTo": "DataScientist"}
+  mcp__codex-flow__task_create {"name": "Compile Insights", "assignTo": "InsightsCompiler", "dependsOn": ["Literature Review", "Primary Research", "Data Analysis"]}
   TodoWrite {"todos": [
     {"id": "1", "content": "Initialize research swarm", "status": "completed", "priority": "high"},
     {"id": "2", "content": "Conduct literature review", "status": "in_progress", "priority": "high"},
@@ -2125,16 +2125,16 @@ function getAgentRecommendations(strategy, maxAgents, objective) {
 
 \`\`\`
 [BatchTool - Single Message]:
-  mcp__claude-flow__agent_spawn {"type": "coordinator", "name": "TechLead"}
-  mcp__claude-flow__agent_spawn {"type": "architect", "name": "SystemArchitect"}
-  mcp__claude-flow__agent_spawn {"type": "coder", "name": "BackendDev"}
-  mcp__claude-flow__agent_spawn {"type": "coder", "name": "FrontendDev"}
-  mcp__claude-flow__agent_spawn {"type": "tester", "name": "QAEngineer"}
-  mcp__claude-flow__memory_store {"key": "dev/objective", "value": "${objective}"}
-  mcp__claude-flow__task_create {"name": "System Architecture", "assignTo": "SystemArchitect"}
-  mcp__claude-flow__task_create {"name": "Backend Implementation", "assignTo": "BackendDev", "dependsOn": ["System Architecture"]}
-  mcp__claude-flow__task_create {"name": "Frontend Implementation", "assignTo": "FrontendDev", "dependsOn": ["System Architecture"]}
-  mcp__claude-flow__task_create {"name": "Testing Suite", "assignTo": "QAEngineer", "dependsOn": ["Backend Implementation", "Frontend Implementation"]}
+  mcp__codex-flow__agent_spawn {"type": "coordinator", "name": "TechLead"}
+  mcp__codex-flow__agent_spawn {"type": "architect", "name": "SystemArchitect"}
+  mcp__codex-flow__agent_spawn {"type": "coder", "name": "BackendDev"}
+  mcp__codex-flow__agent_spawn {"type": "coder", "name": "FrontendDev"}
+  mcp__codex-flow__agent_spawn {"type": "tester", "name": "QAEngineer"}
+  mcp__codex-flow__memory_store {"key": "dev/objective", "value": "${objective}"}
+  mcp__codex-flow__task_create {"name": "System Architecture", "assignTo": "SystemArchitect"}
+  mcp__codex-flow__task_create {"name": "Backend Implementation", "assignTo": "BackendDev", "dependsOn": ["System Architecture"]}
+  mcp__codex-flow__task_create {"name": "Frontend Implementation", "assignTo": "FrontendDev", "dependsOn": ["System Architecture"]}
+  mcp__codex-flow__task_create {"name": "Testing Suite", "assignTo": "QAEngineer", "dependsOn": ["Backend Implementation", "Frontend Implementation"]}
   TodoWrite {"todos": [
     {"id": "1", "content": "Initialize development swarm", "status": "completed", "priority": "high"},
     {"id": "2", "content": "Design system architecture", "status": "in_progress", "priority": "high"},
@@ -2150,16 +2150,16 @@ function getAgentRecommendations(strategy, maxAgents, objective) {
 
 \`\`\`
 [BatchTool - Single Message]:
-  mcp__claude-flow__agent_spawn {"type": "coordinator", "name": "AnalysisLead"}
-  mcp__claude-flow__agent_spawn {"type": "analyst", "name": "DataEngineer"}
-  mcp__claude-flow__agent_spawn {"type": "analyst", "name": "StatisticalExpert"}
-  mcp__claude-flow__agent_spawn {"type": "coder", "name": "VisualizationDev"}
-  mcp__claude-flow__agent_spawn {"type": "analyst", "name": "BusinessAnalyst"}
-  mcp__claude-flow__memory_store {"key": "analysis/objective", "value": "${objective}"}
-  mcp__claude-flow__task_create {"name": "Data Pipeline Setup", "assignTo": "DataEngineer"}
-  mcp__claude-flow__task_create {"name": "Statistical Analysis", "assignTo": "StatisticalExpert", "dependsOn": ["Data Pipeline Setup"]}
-  mcp__claude-flow__task_create {"name": "Create Visualizations", "assignTo": "VisualizationDev", "dependsOn": ["Statistical Analysis"]}
-  mcp__claude-flow__task_create {"name": "Business Insights", "assignTo": "BusinessAnalyst", "dependsOn": ["Statistical Analysis"]}
+  mcp__codex-flow__agent_spawn {"type": "coordinator", "name": "AnalysisLead"}
+  mcp__codex-flow__agent_spawn {"type": "analyst", "name": "DataEngineer"}
+  mcp__codex-flow__agent_spawn {"type": "analyst", "name": "StatisticalExpert"}
+  mcp__codex-flow__agent_spawn {"type": "coder", "name": "VisualizationDev"}
+  mcp__codex-flow__agent_spawn {"type": "analyst", "name": "BusinessAnalyst"}
+  mcp__codex-flow__memory_store {"key": "analysis/objective", "value": "${objective}"}
+  mcp__codex-flow__task_create {"name": "Data Pipeline Setup", "assignTo": "DataEngineer"}
+  mcp__codex-flow__task_create {"name": "Statistical Analysis", "assignTo": "StatisticalExpert", "dependsOn": ["Data Pipeline Setup"]}
+  mcp__codex-flow__task_create {"name": "Create Visualizations", "assignTo": "VisualizationDev", "dependsOn": ["Statistical Analysis"]}
+  mcp__codex-flow__task_create {"name": "Business Insights", "assignTo": "BusinessAnalyst", "dependsOn": ["Statistical Analysis"]}
   TodoWrite {"todos": [
     {"id": "1", "content": "Initialize analysis swarm", "status": "completed", "priority": "high"},
     {"id": "2", "content": "Setup data pipelines", "status": "in_progress", "priority": "high"},
@@ -2175,16 +2175,16 @@ function getAgentRecommendations(strategy, maxAgents, objective) {
 
 \`\`\`
 [BatchTool - Single Message]:
-  mcp__claude-flow__agent_spawn {"type": "coordinator", "name": "QALead"}
-  mcp__claude-flow__agent_spawn {"type": "tester", "name": "UnitTestEngineer"}
-  mcp__claude-flow__agent_spawn {"type": "tester", "name": "IntegrationTester"}
-  mcp__claude-flow__agent_spawn {"type": "tester", "name": "PerformanceTester"}
-  mcp__claude-flow__agent_spawn {"type": "tester", "name": "SecurityAuditor"}
-  mcp__claude-flow__memory_store {"key": "testing/objective", "value": "${objective}"}
-  mcp__claude-flow__task_create {"name": "Unit Test Suite", "assignTo": "UnitTestEngineer"}
-  mcp__claude-flow__task_create {"name": "Integration Tests", "assignTo": "IntegrationTester"}
-  mcp__claude-flow__task_create {"name": "Performance Tests", "assignTo": "PerformanceTester"}
-  mcp__claude-flow__task_create {"name": "Security Audit", "assignTo": "SecurityAuditor"}
+  mcp__codex-flow__agent_spawn {"type": "coordinator", "name": "QALead"}
+  mcp__codex-flow__agent_spawn {"type": "tester", "name": "UnitTestEngineer"}
+  mcp__codex-flow__agent_spawn {"type": "tester", "name": "IntegrationTester"}
+  mcp__codex-flow__agent_spawn {"type": "tester", "name": "PerformanceTester"}
+  mcp__codex-flow__agent_spawn {"type": "tester", "name": "SecurityAuditor"}
+  mcp__codex-flow__memory_store {"key": "testing/objective", "value": "${objective}"}
+  mcp__codex-flow__task_create {"name": "Unit Test Suite", "assignTo": "UnitTestEngineer"}
+  mcp__codex-flow__task_create {"name": "Integration Tests", "assignTo": "IntegrationTester"}
+  mcp__codex-flow__task_create {"name": "Performance Tests", "assignTo": "PerformanceTester"}
+  mcp__codex-flow__task_create {"name": "Security Audit", "assignTo": "SecurityAuditor"}
   TodoWrite {"todos": [
     {"id": "1", "content": "Initialize testing swarm", "status": "completed", "priority": "high"},
     {"id": "2", "content": "Create unit tests", "status": "in_progress", "priority": "high"},
@@ -2200,16 +2200,16 @@ function getAgentRecommendations(strategy, maxAgents, objective) {
 
 \`\`\`
 [BatchTool - Single Message]:
-  mcp__claude-flow__agent_spawn {"type": "coordinator", "name": "OptimizationLead"}
-  mcp__claude-flow__agent_spawn {"type": "analyst", "name": "PerformanceProfiler"}
-  mcp__claude-flow__agent_spawn {"type": "coder", "name": "AlgorithmExpert"}
-  mcp__claude-flow__agent_spawn {"type": "analyst", "name": "DatabaseOptimizer"}
-  mcp__claude-flow__agent_spawn {"type": "coder", "name": "SystemsTuner"}
-  mcp__claude-flow__memory_store {"key": "optimization/objective", "value": "${objective}"}
-  mcp__claude-flow__task_create {"name": "Performance Profiling", "assignTo": "PerformanceProfiler"}
-  mcp__claude-flow__task_create {"name": "Algorithm Optimization", "assignTo": "AlgorithmExpert", "dependsOn": ["Performance Profiling"]}
-  mcp__claude-flow__task_create {"name": "Database Optimization", "assignTo": "DatabaseOptimizer", "dependsOn": ["Performance Profiling"]}
-  mcp__claude-flow__task_create {"name": "System Tuning", "assignTo": "SystemsTuner", "dependsOn": ["Performance Profiling"]}
+  mcp__codex-flow__agent_spawn {"type": "coordinator", "name": "OptimizationLead"}
+  mcp__codex-flow__agent_spawn {"type": "analyst", "name": "PerformanceProfiler"}
+  mcp__codex-flow__agent_spawn {"type": "coder", "name": "AlgorithmExpert"}
+  mcp__codex-flow__agent_spawn {"type": "analyst", "name": "DatabaseOptimizer"}
+  mcp__codex-flow__agent_spawn {"type": "coder", "name": "SystemsTuner"}
+  mcp__codex-flow__memory_store {"key": "optimization/objective", "value": "${objective}"}
+  mcp__codex-flow__task_create {"name": "Performance Profiling", "assignTo": "PerformanceProfiler"}
+  mcp__codex-flow__task_create {"name": "Algorithm Optimization", "assignTo": "AlgorithmExpert", "dependsOn": ["Performance Profiling"]}
+  mcp__codex-flow__task_create {"name": "Database Optimization", "assignTo": "DatabaseOptimizer", "dependsOn": ["Performance Profiling"]}
+  mcp__codex-flow__task_create {"name": "System Tuning", "assignTo": "SystemsTuner", "dependsOn": ["Performance Profiling"]}
   TodoWrite {"todos": [
     {"id": "1", "content": "Initialize optimization swarm", "status": "completed", "priority": "high"},
     {"id": "2", "content": "Profile system performance", "status": "in_progress", "priority": "high"},
@@ -2225,16 +2225,16 @@ function getAgentRecommendations(strategy, maxAgents, objective) {
 
 \`\`\`
 [BatchTool - Single Message]:
-  mcp__claude-flow__agent_spawn {"type": "coordinator", "name": "MaintenanceLead"}
-  mcp__claude-flow__agent_spawn {"type": "analyst", "name": "SystemAuditor"}
-  mcp__claude-flow__agent_spawn {"type": "coder", "name": "PatchDeveloper"}
-  mcp__claude-flow__agent_spawn {"type": "tester", "name": "RegressionTester"}
-  mcp__claude-flow__agent_spawn {"type": "analyst", "name": "DocumentationUpdater"}
-  mcp__claude-flow__memory_store {"key": "maintenance/objective", "value": "${objective}"}
-  mcp__claude-flow__task_create {"name": "System Audit", "assignTo": "SystemAuditor"}
-  mcp__claude-flow__task_create {"name": "Develop Patches", "assignTo": "PatchDeveloper", "dependsOn": ["System Audit"]}
-  mcp__claude-flow__task_create {"name": "Regression Testing", "assignTo": "RegressionTester", "dependsOn": ["Develop Patches"]}
-  mcp__claude-flow__task_create {"name": "Update Documentation", "assignTo": "DocumentationUpdater", "dependsOn": ["Develop Patches"]}
+  mcp__codex-flow__agent_spawn {"type": "coordinator", "name": "MaintenanceLead"}
+  mcp__codex-flow__agent_spawn {"type": "analyst", "name": "SystemAuditor"}
+  mcp__codex-flow__agent_spawn {"type": "coder", "name": "PatchDeveloper"}
+  mcp__codex-flow__agent_spawn {"type": "tester", "name": "RegressionTester"}
+  mcp__codex-flow__agent_spawn {"type": "analyst", "name": "DocumentationUpdater"}
+  mcp__codex-flow__memory_store {"key": "maintenance/objective", "value": "${objective}"}
+  mcp__codex-flow__task_create {"name": "System Audit", "assignTo": "SystemAuditor"}
+  mcp__codex-flow__task_create {"name": "Develop Patches", "assignTo": "PatchDeveloper", "dependsOn": ["System Audit"]}
+  mcp__codex-flow__task_create {"name": "Regression Testing", "assignTo": "RegressionTester", "dependsOn": ["Develop Patches"]}
+  mcp__codex-flow__task_create {"name": "Update Documentation", "assignTo": "DocumentationUpdater", "dependsOn": ["Develop Patches"]}
   TodoWrite {"todos": [
     {"id": "1", "content": "Initialize maintenance swarm", "status": "completed", "priority": "high"},
     {"id": "2", "content": "Audit system health", "status": "in_progress", "priority": "high"},

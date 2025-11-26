@@ -705,7 +705,7 @@ async function pairCommand(args = [], flags = {}) {
 function showHelp() {
   console.log(`
 📚 USAGE:
-  claude-flow pair [options]
+  codex-flow pair [options]
 
 ⚙️ OPTIONS:
   --start              Start a new pair programming session
@@ -727,13 +727,13 @@ function showHelp() {
 
 💡 EXAMPLES:
   # Basic session with auto-fix
-  claude-flow pair --start --verify --autofix
+  codex-flow pair --start --verify --autofix
   
   # Custom threshold and iterations
-  claude-flow pair --start --verify --autofix --threshold 0.98 --iterations 10
+  codex-flow pair --start --verify --autofix --threshold 0.98 --iterations 10
   
   # With testing
-  claude-flow pair --start --verify --autofix --test
+  codex-flow pair --start --verify --autofix --test
 
 🎯 HOW IT WORKS:
   1. Run verification to identify issues

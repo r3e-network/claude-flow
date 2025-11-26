@@ -344,7 +344,7 @@ export class RecoveryManager {
       // Recreate executable
       const createResult = await this.createExecutableWrapper();
       if (createResult.success) {
-        result.actions.push('Recreated claude-flow executable');
+        result.actions.push('Recreated codex-flow executable');
 
         // Set permissions
         if (Deno.build.os !== 'windows') {

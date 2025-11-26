@@ -1,11 +1,11 @@
-# 🌊 Claude-Flow v2.7.0: Enterprise AI Orchestration Platform
+# 🌊 Codex-Flow v2.7.0: Enterprise AI Orchestration Platform
 
 <div align="center">
 
-[![🌟 Star on GitHub](https://img.shields.io/github/stars/ruvnet/claude-flow?style=for-the-badge&logo=github&color=gold)](https://github.com/ruvnet/claude-flow)
-[![📈 Downloads](https://img.shields.io/npm/dt/claude-flow?style=for-the-badge&logo=npm&color=blue&label=Downloads)](https://www.npmjs.com/package/claude-flow)
-[![📦 Latest Release](https://img.shields.io/npm/v/claude-flow/alpha?style=for-the-badge&logo=npm&color=green&label=v2.7.0-alpha.10)](https://www.npmjs.com/package/claude-flow)
-[![⚡ Claude Code](https://img.shields.io/badge/Claude%20Code-SDK%20Integrated-green?style=for-the-badge&logo=anthropic)](https://github.com/ruvnet/claude-flow)
+[![🌟 Star on GitHub](https://img.shields.io/github/stars/ruvnet/codex-flow?style=for-the-badge&logo=github&color=gold)](https://github.com/ruvnet/codex-flow)
+[![📈 Downloads](https://img.shields.io/npm/dt/codex-flow?style=for-the-badge&logo=npm&color=blue&label=Downloads)](https://www.npmjs.com/package/codex-flow)
+[![📦 Latest Release](https://img.shields.io/npm/v/codex-flow/alpha?style=for-the-badge&logo=npm&color=green&label=v2.7.0-alpha.10)](https://www.npmjs.com/package/codex-flow)
+[![⚡ Codex CLI](https://img.shields.io/badge/Codex%20CLI-Integrated-green?style=for-the-badge&logo=openai)](https://github.com/ruvnet/codex-flow)
 [![🏛️ Agentics Foundation](https://img.shields.io/badge/Agentics-Foundation-crimson?style=for-the-badge&logo=openai)](https://discord.com/invite/dfxmpwkG2D)
 [![🛡️ MIT License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative)](https://opensource.org/licenses/MIT)
 
@@ -13,7 +13,7 @@
 
 ## 🌟 **Overview**
 
-**Claude-Flow v2.7** is an enterprise-grade AI orchestration platform that combines **hive-mind swarm intelligence**, **persistent memory**, and **100+ advanced MCP tools** to revolutionize AI-powered development workflows.
+**Codex-Flow v2.7** is an enterprise-grade AI orchestration platform (Codex CLI only) that combines **hive-mind swarm intelligence**, **persistent memory**, and **100+ advanced MCP tools** to revolutionize AI-powered development workflows.
 
 ### 🎯 **Key Features**
 
@@ -44,26 +44,18 @@
 - **npm 9+** or equivalent package manager
 - **Windows users**: See [Windows Installation Guide](./docs/windows-installation.md) for special instructions
 
-⚠️ **IMPORTANT**: Claude Code must be installed first:
-
-```bash
-# 1. Install Claude Code globally
-npm install -g @anthropic-ai/claude-code
-
-# 2. (Optional) Skip permissions check for faster setup
-claude --dangerously-skip-permissions
-```
+⚠️ **IMPORTANT**: Codex CLI must be installed first (ensure `codex --version` works and the binary is on your PATH).
 
 ### 🚀 **Install Latest Alpha**
 
 ```bash
 # NPX (recommended - always latest)
-npx claude-flow@alpha init --force
-npx claude-flow@alpha --help
+npx codex-flow@alpha init --force
+npx codex-flow@alpha --help
 
 # Or install globally
-npm install -g claude-flow@alpha
-claude-flow --version
+npm install -g codex-flow@alpha
+codex-flow --version
 # v2.7.0-alpha.10
 ```
 
@@ -71,7 +63,7 @@ claude-flow --version
 
 ## 🎨 **Skills System**
 
-Claude-Flow includes **25 specialized skills** that activate automatically via natural language - no commands to memorize:
+Codex-Flow includes **25 specialized skills** that activate automatically via natural language - no commands to memorize:
 
 ```bash
 # Just describe what you want - skills activate automatically
@@ -112,8 +104,8 @@ Critical bug fix for semantic search returning 0 results:
 
 ```bash
 # Semantic search now fully functional
-npx claude-flow@alpha memory store test "API configuration" --namespace semantic --reasoningbank
-npx claude-flow@alpha memory query "configuration" --namespace semantic --reasoningbank
+npx codex-flow@alpha memory store test "API configuration" --namespace semantic --reasoningbank
+npx codex-flow@alpha memory query "configuration" --namespace semantic --reasoningbank
 # ✅ Found 3 results (semantic search) in 2ms
 ```
 
@@ -131,15 +123,15 @@ npx claude-flow@alpha memory query "configuration" --namespace semantic --reason
 
 ```bash
 # Semantic vector search (understands meaning, not just keywords)
-npx claude-flow@alpha memory vector-search "user authentication flow" \
+npx codex-flow@alpha memory vector-search "user authentication flow" \
   --k 10 --threshold 0.7 --namespace backend
 
 # Store with vector embedding for semantic search
-npx claude-flow@alpha memory store-vector api_design "REST endpoints" \
+npx codex-flow@alpha memory store-vector api_design "REST endpoints" \
   --namespace backend --metadata '{"version":"v2"}'
 
 # Get AgentDB integration status and capabilities
-npx claude-flow@alpha memory agentdb-info
+npx codex-flow@alpha memory agentdb-info
 
 # Installation (hybrid mode - 100% backward compatible)
 npm install agentdb@1.3.9
@@ -162,19 +154,19 @@ npm install agentdb@1.3.9
 
 ```bash
 # Store memories with pattern matching
-npx claude-flow@alpha memory store api_key "REST API configuration" \
+npx codex-flow@alpha memory store api_key "REST API configuration" \
   --namespace backend --reasoningbank
 
 # Query with pattern search (2-3ms latency)
-npx claude-flow@alpha memory query "API config" \
+npx codex-flow@alpha memory query "API config" \
   --namespace backend --reasoningbank
 # ✅ Found 3 results (pattern matching)
 
 # List all memories
-npx claude-flow@alpha memory list --namespace backend --reasoningbank
+npx codex-flow@alpha memory list --namespace backend --reasoningbank
 
 # Check status and statistics
-npx claude-flow@alpha memory status --reasoningbank
+npx codex-flow@alpha memory status --reasoningbank
 # ✅ Total memories: 30
 #    Embeddings: 30
 #    Storage: .swarm/memory.db
@@ -202,25 +194,25 @@ npx claude-flow@alpha memory status --reasoningbank
 
 ```bash
 # Quick task execution (recommended)
-npx claude-flow@alpha swarm "build REST API with authentication" --claude
+npx codex-flow@alpha swarm "build REST API with authentication" --claude
 
 # Multi-agent coordination
-npx claude-flow@alpha swarm init --topology mesh --max-agents 5
-npx claude-flow@alpha swarm spawn researcher "analyze API patterns"
-npx claude-flow@alpha swarm spawn coder "implement endpoints"
-npx claude-flow@alpha swarm status
+npx codex-flow@alpha swarm init --topology mesh --max-agents 5
+npx codex-flow@alpha swarm spawn researcher "analyze API patterns"
+npx codex-flow@alpha swarm spawn coder "implement endpoints"
+npx codex-flow@alpha swarm status
 ```
 
 ### **Hive-Mind for Complex Projects**
 
 ```bash
 # Initialize hive-mind system
-npx claude-flow@alpha hive-mind wizard
-npx claude-flow@alpha hive-mind spawn "build enterprise system" --claude
+npx codex-flow@alpha hive-mind wizard
+npx codex-flow@alpha hive-mind spawn "build enterprise system" --claude
 
 # Session management
-npx claude-flow@alpha hive-mind status
-npx claude-flow@alpha hive-mind resume session-xxxxx
+npx codex-flow@alpha hive-mind status
+npx codex-flow@alpha hive-mind resume session-xxxxx
 ```
 
 **When to Use:**
@@ -239,7 +231,7 @@ npx claude-flow@alpha hive-mind resume session-xxxxx
 
 ```bash
 # Add Claude Flow MCP server (required)
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+claude mcp add codex-flow npx codex-flow@alpha mcp start
 
 # Optional: Enhanced coordination
 claude mcp add ruv-swarm npx ruv-swarm mcp start
@@ -256,8 +248,8 @@ claude mcp add flow-nexus npx flow-nexus@latest mcp start
 - `neural_status`, `neural_train`, `neural_patterns`
 
 **Memory Tools:**
-- `mcp__claude-flow__memory_usage` - Store/retrieve persistent memory
-- `mcp__claude-flow__memory_search` - Pattern-based search
+- `mcp__codex-flow__memory_usage` - Store/retrieve persistent memory
+- `mcp__codex-flow__memory_search` - Pattern-based search
 
 **GitHub Tools:**
 - `github_repo_analyze`, `github_pr_manage`, `github_issue_track`
@@ -273,11 +265,11 @@ claude mcp add flow-nexus npx flow-nexus@latest mcp start
 
 ### **Automated Workflow Enhancement**
 
-Claude-Flow automatically configures hooks for enhanced operations:
+Codex-Flow automatically configures hooks for enhanced operations:
 
 ```bash
 # Auto-configures hooks during init
-npx claude-flow@alpha init --force
+npx codex-flow@alpha init --force
 ```
 
 ### **Available Hooks**
@@ -304,35 +296,35 @@ npx claude-flow@alpha init --force
 ### **Pattern 1: Single Feature Development**
 ```bash
 # Initialize once per feature
-npx claude-flow@alpha init --force
-npx claude-flow@alpha hive-mind spawn "Implement authentication" --claude
+npx codex-flow@alpha init --force
+npx codex-flow@alpha hive-mind spawn "Implement authentication" --claude
 
 # Continue same feature (reuse hive)
-npx claude-flow@alpha memory query "auth" --recent
-npx claude-flow@alpha swarm "Add password reset" --continue-session
+npx codex-flow@alpha memory query "auth" --recent
+npx codex-flow@alpha swarm "Add password reset" --continue-session
 ```
 
 ### **Pattern 2: Multi-Feature Project**
 ```bash
 # Project initialization
-npx claude-flow@alpha init --force --project-name "my-app"
+npx codex-flow@alpha init --force --project-name "my-app"
 
 # Feature 1: Authentication
-npx claude-flow@alpha hive-mind spawn "auth-system" --namespace auth --claude
+npx codex-flow@alpha hive-mind spawn "auth-system" --namespace auth --claude
 
 # Feature 2: User management
-npx claude-flow@alpha hive-mind spawn "user-mgmt" --namespace users --claude
+npx codex-flow@alpha hive-mind spawn "user-mgmt" --namespace users --claude
 ```
 
 ### **Pattern 3: Research & Analysis**
 ```bash
 # Start research session
-npx claude-flow@alpha hive-mind spawn "Research microservices" \
+npx codex-flow@alpha hive-mind spawn "Research microservices" \
   --agents researcher,analyst --claude
 
 # Check learned knowledge
-npx claude-flow@alpha memory stats
-npx claude-flow@alpha memory query "microservices patterns" --reasoningbank
+npx codex-flow@alpha memory stats
+npx codex-flow@alpha memory query "microservices patterns" --reasoningbank
 ```
 
 ---
@@ -397,10 +389,10 @@ npx claude-flow@alpha memory query "microservices patterns" --reasoningbank
 
 ## 🤝 **Community & Support**
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/ruvnet/claude-flow/issues)
+- **GitHub Issues**: [Report bugs or request features](https://github.com/ruvnet/codex-flow/issues)
 - **Discord**: [Join the Agentics Foundation community](https://discord.com/invite/dfxmpwkG2D)
-- **Documentation**: [Complete guides and tutorials](https://github.com/ruvnet/claude-flow/wiki)
-- **Examples**: [Real-world usage patterns](https://github.com/ruvnet/claude-flow/tree/main/examples)
+- **Documentation**: [Complete guides and tutorials](https://github.com/ruvnet/codex-flow/wiki)
+- **Examples**: [Real-world usage patterns](https://github.com/ruvnet/codex-flow/tree/main/examples)
 
 ---
 
@@ -430,11 +422,11 @@ npx claude-flow@alpha memory query "microservices patterns" --reasoningbank
 
 ## Star History
 
-<a href="https://www.star-history.com/#ruvnet/claude-flow&Date">
+<a href="https://www.star-history.com/#ruvnet/codex-flow&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ruvnet/claude-flow&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ruvnet/claude-flow&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ruvnet/claude-flow&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ruvnet/codex-flow&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ruvnet/codex-flow&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ruvnet/codex-flow&type=Date" />
  </picture>
 </a>
 

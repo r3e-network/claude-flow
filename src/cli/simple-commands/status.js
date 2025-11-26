@@ -258,13 +258,13 @@ function displayStatus(status, verbose) {
   // Recommendations
   console.log('\n💡 Quick Actions:');
   if (!status.orchestrator.running) {
-    console.log('   Run "claude-flow start" to begin orchestration');
+    console.log('   Run "codex-flow start" to begin orchestration');
   }
   if (status.agents.active === 0) {
-    console.log('   Run "claude-flow agent spawn researcher" to create an agent');
+    console.log('   Run "codex-flow agent spawn researcher" to create an agent');
   }
   if (status.memory.entries === 0) {
-    console.log('   Run "claude-flow memory store key value" to test memory');
+    console.log('   Run "codex-flow memory store key value" to test memory');
   }
 }
 

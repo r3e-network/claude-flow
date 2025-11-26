@@ -55,9 +55,9 @@ async function ensureInitialized() {
         console.error('ReasoningBank requires better-sqlite3, which is not available in npx temp directories.\n');
         console.error('📚 Solutions:\n');
         console.error('  1. LOCAL INSTALL (Recommended):');
-        console.error('     npm install && node_modules/.bin/claude-flow memory store "key" "value"\n');
+        console.error('     npm install && node_modules/.bin/codex-flow memory store "key" "value"\n');
         console.error('  2. USE MCP TOOLS instead:');
-        console.error('     mcp__claude-flow__memory_usage({ action: "store", key: "test", value: "data" })\n');
+        console.error('     mcp__codex-flow__memory_usage({ action: "store", key: "test", value: "data" })\n');
         console.error('  3. USE JSON FALLBACK (automatic):');
         console.error('     Command will continue with JSON storage...\n');
         console.error('See: docs/MEMORY_COMMAND_FIX.md for details\n');
@@ -88,7 +88,7 @@ export async function initializeReasoningBank() {
 /**
  * Store a memory in ReasoningBank (Node.js backend with SQLite)
  *
- * Maps claude-flow memory model to ReasoningBank pattern model:
+ * Maps codex-flow memory model to ReasoningBank pattern model:
  * - key -> title
  * - value -> content (searchable text)
  * - namespace -> domain

@@ -18,55 +18,55 @@ Claude-Flow is the ultimate multi-terminal orchestration platform that revolutio
 ## Core Commands
 
 ### 🚀 System Management
-- \`./claude-flow start\` - Start orchestration system
-- \`./claude-flow start --ui\` - Start with interactive process management UI
-- \`./claude-flow status\` - Check system status
-- \`./claude-flow monitor\` - Real-time monitoring
-- \`./claude-flow stop\` - Stop orchestration
+- \`./codex-flow start\` - Start orchestration system
+- \`./codex-flow start --ui\` - Start with interactive process management UI
+- \`./codex-flow status\` - Check system status
+- \`./codex-flow monitor\` - Real-time monitoring
+- \`./codex-flow stop\` - Stop orchestration
 
 ### 🤖 Agent Management
-- \`./claude-flow agent spawn <type>\` - Create new agent
-- \`./claude-flow agent list\` - List active agents
-- \`./claude-flow agent info <id>\` - Agent details
-- \`./claude-flow agent terminate <id>\` - Stop agent
+- \`./codex-flow agent spawn <type>\` - Create new agent
+- \`./codex-flow agent list\` - List active agents
+- \`./codex-flow agent info <id>\` - Agent details
+- \`./codex-flow agent terminate <id>\` - Stop agent
 
 ### 📋 Task Management
-- \`./claude-flow task create <type> "description"\` - Create task
-- \`./claude-flow task list\` - List all tasks
-- \`./claude-flow task status <id>\` - Task status
-- \`./claude-flow task cancel <id>\` - Cancel task
-- \`./claude-flow task workflow <file>\` - Execute workflow
+- \`./codex-flow task create <type> "description"\` - Create task
+- \`./codex-flow task list\` - List all tasks
+- \`./codex-flow task status <id>\` - Task status
+- \`./codex-flow task cancel <id>\` - Cancel task
+- \`./codex-flow task workflow <file>\` - Execute workflow
 
 ### 🧠 Memory Operations
-- \`./claude-flow memory store "key" "value"\` - Store data
-- \`./claude-flow memory query "search"\` - Search memory
-- \`./claude-flow memory stats\` - Memory statistics
-- \`./claude-flow memory export <file>\` - Export memory
-- \`./claude-flow memory import <file>\` - Import memory
+- \`./codex-flow memory store "key" "value"\` - Store data
+- \`./codex-flow memory query "search"\` - Search memory
+- \`./codex-flow memory stats\` - Memory statistics
+- \`./codex-flow memory export <file>\` - Export memory
+- \`./codex-flow memory import <file>\` - Import memory
 
 ### ⚡ SPARC Development
-- \`./claude-flow sparc "task"\` - Run SPARC orchestrator
-- \`./claude-flow sparc modes\` - List all 17+ SPARC modes
-- \`./claude-flow sparc run <mode> "task"\` - Run specific mode
-- \`./claude-flow sparc tdd "feature"\` - TDD workflow
-- \`./claude-flow sparc info <mode>\` - Mode details
+- \`./codex-flow sparc "task"\` - Run SPARC orchestrator
+- \`./codex-flow sparc modes\` - List all 17+ SPARC modes
+- \`./codex-flow sparc run <mode> "task"\` - Run specific mode
+- \`./codex-flow sparc tdd "feature"\` - TDD workflow
+- \`./codex-flow sparc info <mode>\` - Mode details
 
 ### 🐝 Swarm Coordination
-- \`./claude-flow swarm "task" --strategy <type>\` - Start swarm
-- \`./claude-flow swarm "task" --background\` - Long-running swarm
-- \`./claude-flow swarm "task" --monitor\` - With monitoring
-- \`./claude-flow swarm "task" --ui\` - Interactive UI
-- \`./claude-flow swarm "task" --distributed\` - Distributed coordination
+- \`./codex-flow swarm "task" --strategy <type>\` - Start swarm
+- \`./codex-flow swarm "task" --background\` - Long-running swarm
+- \`./codex-flow swarm "task" --monitor\` - With monitoring
+- \`./codex-flow swarm "task" --ui\` - Interactive UI
+- \`./codex-flow swarm "task" --distributed\` - Distributed coordination
 
 ### 🌍 MCP Integration
-- \`./claude-flow mcp status\` - MCP server status
-- \`./claude-flow mcp tools\` - List available tools
-- \`./claude-flow mcp config\` - Show configuration
-- \`./claude-flow mcp logs\` - View MCP logs
+- \`./codex-flow mcp status\` - MCP server status
+- \`./codex-flow mcp tools\` - List available tools
+- \`./codex-flow mcp config\` - Show configuration
+- \`./codex-flow mcp logs\` - View MCP logs
 
 ### 🤖 Claude Integration
-- \`./claude-flow claude spawn "task"\` - Spawn Claude with enhanced guidance
-- \`./claude-flow claude batch <file>\` - Execute workflow configuration
+- \`./codex-flow claude spawn "task"\` - Spawn Claude with enhanced guidance
+- \`./codex-flow claude batch <file>\` - Execute workflow configuration
 
 ## 🌟 Quick Examples
 
@@ -77,27 +77,27 @@ npx -y claude-flow@latest init --sparc
 
 ### Start a development swarm:
 \`\`\`bash
-./claude-flow swarm "Build REST API" --strategy development --monitor --review
+./codex-flow swarm "Build REST API" --strategy development --monitor --review
 \`\`\`
 
 ### Run TDD workflow:
 \`\`\`bash
-./claude-flow sparc tdd "user authentication"
+./codex-flow sparc tdd "user authentication"
 \`\`\`
 
 ### Store project context:
 \`\`\`bash
-./claude-flow memory store "project_requirements" "e-commerce platform specs" --namespace project
+./codex-flow memory store "project_requirements" "e-commerce platform specs" --namespace project
 \`\`\`
 
 ### Spawn specialized agents:
 \`\`\`bash
-./claude-flow agent spawn researcher --name "Senior Researcher" --priority 8
-./claude-flow agent spawn developer --name "Lead Developer" --priority 9
+./codex-flow agent spawn researcher --name "Senior Researcher" --priority 8
+./codex-flow agent spawn developer --name "Lead Developer" --priority 9
 \`\`\`
 
 ## 🎯 Best Practices
-- Use \`./claude-flow\` instead of \`npx claude-flow\` after initialization
+- Use \`./claude-flow\` instead of \`npx codex-flow\` after initialization
 - Store important context in memory for cross-session persistence
 - Use swarm mode for complex tasks requiring multiple agents
 - Enable monitoring for real-time progress tracking
@@ -125,49 +125,49 @@ The memory system provides persistent storage for cross-session and cross-agent 
 ## Store Information
 \`\`\`bash
 # Store with default namespace
-./claude-flow memory store "key" "value"
+./codex-flow memory store "key" "value"
 
 # Store with specific namespace
-./claude-flow memory store "architecture_decisions" "microservices with API gateway" --namespace arch
+./codex-flow memory store "architecture_decisions" "microservices with API gateway" --namespace arch
 \`\`\`
 
 ## Query Memory
 \`\`\`bash
 # Search across all namespaces
-./claude-flow memory query "authentication"
+./codex-flow memory query "authentication"
 
 # Search with filters
-./claude-flow memory query "API design" --namespace arch --limit 10
+./codex-flow memory query "API design" --namespace arch --limit 10
 \`\`\`
 
 ## Memory Statistics
 \`\`\`bash
 # Show overall statistics
-./claude-flow memory stats
+./codex-flow memory stats
 
 # Show namespace-specific stats
-./claude-flow memory stats --namespace project
+./codex-flow memory stats --namespace project
 \`\`\`
 
 ## Export/Import
 \`\`\`bash
 # Export all memory
-./claude-flow memory export full-backup.json
+./codex-flow memory export full-backup.json
 
 # Export specific namespace
-./claude-flow memory export project-backup.json --namespace project
+./codex-flow memory export project-backup.json --namespace project
 
 # Import memory
-./claude-flow memory import backup.json
+./codex-flow memory import backup.json
 \`\`\`
 
 ## Cleanup Operations
 \`\`\`bash
 # Clean entries older than 30 days
-./claude-flow memory cleanup --days 30
+./codex-flow memory cleanup --days 30
 
 # Clean specific namespace
-./claude-flow memory cleanup --namespace temp --days 7
+./codex-flow memory cleanup --namespace temp --days 7
 \`\`\`
 
 ## 🗂️ Namespaces
@@ -205,20 +205,20 @@ The memory system provides persistent storage for cross-session and cross-agent 
 
 ### Store SPARC context:
 \`\`\`bash
-./claude-flow memory store "spec_auth_requirements" "OAuth2 + JWT with refresh tokens" --namespace spec
-./claude-flow memory store "arch_api_design" "RESTful microservices with GraphQL gateway" --namespace arch
-./claude-flow memory store "test_coverage_auth" "95% coverage, all tests passing" --namespace test
+./codex-flow memory store "spec_auth_requirements" "OAuth2 + JWT with refresh tokens" --namespace spec
+./codex-flow memory store "arch_api_design" "RESTful microservices with GraphQL gateway" --namespace arch
+./codex-flow memory store "test_coverage_auth" "95% coverage, all tests passing" --namespace test
 \`\`\`
 
 ### Query project decisions:
 \`\`\`bash
-./claude-flow memory query "authentication" --namespace arch --limit 5
-./claude-flow memory query "test results" --namespace test
+./codex-flow memory query "authentication" --namespace arch --limit 5
+./codex-flow memory query "test results" --namespace test
 \`\`\`
 
 ### Backup project memory:
 \`\`\`bash
-./claude-flow memory export project-$(date +%Y%m%d).json --namespace project
+./codex-flow memory export project-$(date +%Y%m%d).json --namespace project
 \`\`\`
 `;
 
@@ -237,7 +237,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ## Basic Usage
 \`\`\`bash
-./claude-flow swarm "your complex task" --strategy <type> [options]
+./codex-flow swarm "your complex task" --strategy <type> [options]
 \`\`\`
 
 ## 🎯 Swarm Strategies
@@ -287,7 +287,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ### Development Swarm with Review
 \`\`\`bash
-./claude-flow swarm "Build e-commerce REST API" \\
+./codex-flow swarm "Build e-commerce REST API" \\
   --strategy development \\
   --monitor \\
   --review \\
@@ -296,7 +296,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ### Long-Running Research Swarm
 \`\`\`bash
-./claude-flow swarm "Analyze AI market trends 2024-2025" \\
+./codex-flow swarm "Analyze AI market trends 2024-2025" \\
   --strategy research \\
   --background \\
   --distributed \\
@@ -305,7 +305,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ### Performance Optimization Swarm
 \`\`\`bash
-./claude-flow swarm "Optimize database queries and API performance" \\
+./codex-flow swarm "Optimize database queries and API performance" \\
   --strategy optimization \\
   --testing \\
   --parallel \\
@@ -314,7 +314,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ### Enterprise Development Swarm
 \`\`\`bash
-./claude-flow swarm "Implement secure payment processing system" \\
+./codex-flow swarm "Implement secure payment processing system" \\
   --strategy development \\
   --mode distributed \\
   --max-agents 10 \\
@@ -328,7 +328,7 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 
 ### Testing and QA Swarm
 \`\`\`bash
-./claude-flow swarm "Comprehensive security audit and testing" \\
+./codex-flow swarm "Comprehensive security audit and testing" \\
   --strategy testing \\
   --review \\
   --verbose \\
@@ -340,28 +340,28 @@ Advanced multi-agent coordination system with timeout-free execution, distribute
 ### Real-time monitoring:
 \`\`\`bash
 # Monitor swarm activity
-./claude-flow monitor
+./codex-flow monitor
 
 # Monitor specific component
-./claude-flow monitor --focus swarm
+./codex-flow monitor --focus swarm
 \`\`\`
 
 ### Check swarm status:
 \`\`\`bash
 # Overall system status
-./claude-flow status
+./codex-flow status
 
 # Detailed swarm status
-./claude-flow status --verbose
+./codex-flow status --verbose
 \`\`\`
 
 ### View agent activity:
 \`\`\`bash
 # List all agents
-./claude-flow agent list
+./codex-flow agent list
 
 # Agent details
-./claude-flow agent info <agent-id>
+./codex-flow agent info <agent-id>
 \`\`\`
 
 ## 💾 Memory Integration
@@ -370,13 +370,13 @@ Swarms automatically use distributed memory for collaboration:
 
 \`\`\`bash
 # Store swarm objectives
-./claude-flow memory store "swarm_objective" "Build scalable API" --namespace swarm
+./codex-flow memory store "swarm_objective" "Build scalable API" --namespace swarm
 
 # Query swarm progress
-./claude-flow memory query "swarm_progress" --namespace swarm
+./codex-flow memory query "swarm_progress" --namespace swarm
 
 # Export swarm memory
-./claude-flow memory export swarm-results.json --namespace swarm
+./codex-flow memory export swarm-results.json --namespace swarm
 \`\`\`
 
 ## 🎯 Key Features
@@ -411,12 +411,12 @@ Swarms automatically use distributed memory for collaboration:
 
 ### Dry run to preview:
 \`\`\`bash
-./claude-flow swarm "Test task" --dry-run --strategy development
+./codex-flow swarm "Test task" --dry-run --strategy development
 \`\`\`
 
 ### Custom quality thresholds:
 \`\`\`bash
-./claude-flow swarm "High quality API" \\
+./codex-flow swarm "High quality API" \\
   --strategy development \\
   --quality-threshold 0.95
 \`\`\`

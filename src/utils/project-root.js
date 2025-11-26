@@ -11,14 +11,14 @@ export function findProjectRoot(startDir = process.cwd()) {
   let currentDir = path.resolve(startDir);
   const root = path.parse(currentDir).root;
   
-  // First, look for the main claude-flow project root
+  // First, look for the main codex-flow project root
   let searchDir = currentDir;
   while (searchDir !== root) {
     const packageJsonPath = path.join(searchDir, 'package.json');
     if (fs.existsSync(packageJsonPath)) {
       try {
         const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-        // Check if this is the main claude-flow package
+        // Check if this is the main codex-flow package
         if (packageJson.name === 'claude-flow' || 
             packageJson.name === '@anthropic/claude-flow') {
           // Also verify it has the expected structure
@@ -35,9 +35,11 @@ export function findProjectRoot(startDir = process.cwd()) {
     
     // Check for .git directory (strong indicator of project root)
     if (fs.existsSync(path.join(searchDir, '.git'))) {
-      // If we find .git and it has claude-flow structure, use it
+      // If we find .git and it has codex-flow structure, use it
       if (fs.existsSync(path.join(searchDir, 'bin/claude-flow')) ||
+          fs.existsSync(path.join(searchDir, 'bin/codex-flow')) ||
           fs.existsSync(path.join(searchDir, '.claude-flow')) ||
+          fs.existsSync(path.join(searchDir, '.codex-flow')) ||
           fs.existsSync(path.join(searchDir, 'CLAUDE.md'))) {
         return searchDir;
       }
@@ -51,13 +53,15 @@ export function findProjectRoot(startDir = process.cwd()) {
     searchDir = parentDir;
   }
   
-  // Fallback: look for any .claude-flow or .swarm directory going up
+  // Fallback: look for any .codex-flow/.claude-flow or .swarm directory going up
   searchDir = currentDir;
   while (searchDir !== root) {
     if (fs.existsSync(path.join(searchDir, '.claude-flow')) ||
+        fs.existsSync(path.join(searchDir, '.codex-flow')) ||
         fs.existsSync(path.join(searchDir, '.swarm'))) {
       // Additional check for main project markers
       if (fs.existsSync(path.join(searchDir, 'CLAUDE.md')) ||
+          fs.existsSync(path.join(searchDir, 'CODEX.md')) ||
           fs.existsSync(path.join(searchDir, 'bin/claude-flow'))) {
         return searchDir;
       }
@@ -75,12 +79,15 @@ export function findProjectRoot(startDir = process.cwd()) {
 }
 
 /**
- * Get the .claude-flow directory path relative to project root
+ * Get the .codex-flow directory path relative to project root
  * @param {string} startDir - Starting directory for search
- * @returns {string} - Path to .claude-flow directory
+ * @returns {string} - Path to .codex-flow directory
  */
 export function getClaudeFlowDir(startDir) {
   const root = findProjectRoot(startDir);
+  if (fs.existsSync(path.join(root, '.codex-flow'))) {
+    return path.join(root, '.codex-flow');
+  }
   return path.join(root, '.claude-flow');
 }
 

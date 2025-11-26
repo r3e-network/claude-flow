@@ -1,11 +1,16 @@
 {
-  "name": "claude-flow",
+  "name": "codex-flow",
   "version": "2.7.34",
-  "description": "Enterprise-grade AI agent orchestration with WASM-powered ReasoningBank memory and AgentDB vector database (always uses latest agentic-flow)",
-  "mcpName": "io.github.ruvnet/claude-flow",
+  "description": "Codex-first enterprise AI agent orchestration with WASM-powered ReasoningBank memory and AgentDB vector database (always uses latest agentic-flow)",
+  "mcpName": "io.github.ruvnet/codex-flow",
   "main": "cli.mjs",
   "bin": {
-    "claude-flow": "bin/claude-flow.js"
+    "codex-flow": "bin/claude-flow.js",
+    "codex-flow-swarm": "bin/codex-flow-swarm",
+    "codex-flow-swarm-background": "bin/codex-flow-swarm-background",
+    "codex-flow-swarm-bg": "bin/codex-flow-swarm-bg",
+    "codex-flow-swarm-monitor": "bin/codex-flow-swarm-monitor",
+    "codex-flow-swarm-ui": "bin/codex-flow-swarm-ui"
   },
   "scripts": {
     "preinstall": "node -e \"if(process.platform === 'win32' && process.env.npm_config_user_agent && process.env.npm_config_user_agent.includes('npm')) { console.warn('⚠️  Warning: On Windows, it is recommended to use pnpm to install this package to avoid potential native dependency build issues.'); console.warn('💡 Try: pnpm install or pnpx claude-flow@alpha'); }\"",

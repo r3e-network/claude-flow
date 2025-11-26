@@ -143,16 +143,16 @@ The agent uses Claude-flow hooks for coordination:
 
 ```bash
 # Pre-task coordination
-npx claude-flow@alpha hooks pre-task --description "Foundation building"
+npx codex-flow@alpha hooks pre-task --description "Foundation building"
 
 # Post-edit notifications
-npx claude-flow@alpha hooks post-edit --file "model.pkl"
+npx codex-flow@alpha hooks post-edit --file "model.pkl"
 
 # Memory storage
-npx claude-flow@alpha memory store "agent/foundation/results" "{...}"
+npx codex-flow@alpha memory store "agent/foundation/results" "{...}"
 
 # Result sharing
-npx claude-flow@alpha hooks notify --message "Foundation complete"
+npx codex-flow@alpha hooks notify --message "Foundation complete"
 ```
 
 ## Output Structure

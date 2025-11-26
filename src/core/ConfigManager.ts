@@ -101,13 +101,21 @@ export class ConfigManager {
    * Find configuration file in standard locations
    */
   private findConfigFile(): string {
+    // Check Codex-first paths, then legacy Claude paths for compatibility
     const possiblePaths = [
+      'codex-flow.config.json',
+      'codex-flow.config.js',
+      '.codex-flow.json',
+      '.codex-flow/config.json',
+      'config/codex-flow.json',
+      path.join(process.cwd(), 'codex-flow.config.json'),
+      // Legacy fallbacks
       'claude-flow.config.json',
       'claude-flow.config.js',
       '.claude-flow.json',
       '.claude-flow/config.json',
       'config/claude-flow.json',
-      path.join(process.cwd(), 'claude-flow.config.json')
+      path.join(process.cwd(), 'claude-flow.config.json'),
     ];
 
     for (const configPath of possiblePaths) {
@@ -116,7 +124,8 @@ export class ConfigManager {
       }
     }
 
-    return 'claude-flow.config.json'; // Default
+    // Default to Codex naming
+    return 'codex-flow.config.json'; // Default
   }
 
   /**

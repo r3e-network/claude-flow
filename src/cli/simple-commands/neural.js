@@ -12,7 +12,7 @@ export async function neuralCommand(args, flags) {
   
   if (!subcommand) {
     console.log(chalk.cyan('🧠 Claude Flow Neural Module'));
-    console.log('\nUsage: claude-flow neural <command> [options]');
+    console.log('\nUsage: codex-flow neural <command> [options]');
     console.log('\nCommands:');
     console.log('  init    Initialize SAFLA neural module');
     console.log('\nOptions:');
@@ -95,7 +95,7 @@ Your memory system architecture:
 
 \`\`\`javascript
 // Initialize SAFLA neural patterns
-mcp__claude-flow__neural_train {
+mcp__codex-flow__neural_train {
   pattern_type: "coordination",
   training_data: JSON.stringify({
     architecture: "safla-transformer",
@@ -107,7 +107,7 @@ mcp__claude-flow__neural_train {
 }
 
 // Store learning patterns
-mcp__claude-flow__memory_usage {
+mcp__codex-flow__memory_usage {
   action: "store",
   namespace: "safla-learning",
   key: "pattern_\${timestamp}",

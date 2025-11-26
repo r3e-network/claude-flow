@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Claude-Flow MCP Server - Wrapper Mode
+ * Codex-Flow MCP Server - Wrapper Mode
  *
- * This version uses the Claude Code MCP wrapper approach instead of templates.
+ * This version uses the Codex CLI MCP wrapper approach instead of templates.
  */
 
 import { ClaudeCodeMCPWrapper } from './claude-code-wrapper.js';
@@ -13,12 +13,12 @@ const isWrapperMode =
 
 async function main() {
   if (isWrapperMode) {
-    console.error('Starting Claude-Flow MCP in wrapper mode...');
+    console.error('Starting Codex-Flow MCP in wrapper mode...');
     const wrapper = new ClaudeCodeMCPWrapper();
     await wrapper.run();
   } else {
     // Fall back to original server
-    console.error('Starting Claude-Flow MCP in direct mode...');
+    console.error('Starting Codex-Flow MCP in direct mode...');
     const { runMCPServer } = await import('./server.js');
     await runMCPServer();
   }

@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run --allow-all
 /**
- * Simple CLI wrapper for Claude-Flow (JavaScript version)
+ * Simple CLI wrapper for Codex-Flow (JavaScript version)
  * This version avoids TypeScript issues in node_modules
  */
 
@@ -17,7 +17,7 @@ import { VERSION } from '../core/version.js';
 
 function printHelp() {
   console.log(`
-🌊 Claude-Flow v${VERSION} - Enterprise-Grade AI Agent Orchestration Platform
+🌊 Codex-Flow v${VERSION} - Enterprise-Grade AI Agent Orchestration Platform (Codex CLI)
 
 🎯 NEW IN v2.6.0: Multi-Provider Execution Engine with Agentic-Flow Integration
    • 66+ specialized agents with multi-provider support (Anthropic, OpenRouter, ONNX, Gemini)
@@ -27,10 +27,10 @@ function printHelp() {
 🎯 ENTERPRISE FEATURES: Complete ruv-swarm integration with 27 MCP tools, neural networking, and production-ready infrastructure
 
 USAGE:
-  claude-flow <command> [options]
+  codex-flow <command> [options]
 
 🚀 INSTALLATION & ENTERPRISE SETUP:
-  npx claude-flow@2.0.0 init --sparc  # Enterprise SPARC + ruv-swarm integration
+  npx codex-flow@2.0.0 init --sparc  # Enterprise SPARC + ruv-swarm integration
   
   The --sparc flag creates:
   • Complete ruv-swarm integration with 27 MCP tools
@@ -78,27 +78,27 @@ USAGE:
 
 🎮 ENTERPRISE QUICK START:
   # Initialize enterprise environment
-  npx claude-flow@2.6.0-alpha.1 init --sparc
+  npx codex-flow@2.6.0-alpha.1 init --sparc
 
   # 🆕 Execute agents with multi-provider support
-  ./claude-flow agent run coder "Build REST API with auth" --provider anthropic
-  ./claude-flow agent run researcher "Research React 19" --provider openrouter  # 99% cost savings
-  ./claude-flow agent agents  # List all 66+ available agents
+  ./codex-flow agent run coder "Build REST API with auth" --provider anthropic
+  ./codex-flow agent run researcher "Research React 19" --provider openrouter  # 99% cost savings
+  ./codex-flow agent agents  # List all 66+ available agents
 
   # Start enterprise orchestration with swarm intelligence
-  ./claude-flow start --ui --swarm
+  ./codex-flow start --ui --swarm
 
   # Deploy intelligent multi-agent development workflow
-  ./claude-flow swarm "build enterprise API" --strategy development --parallel --monitor
+  ./codex-flow swarm "build enterprise API" --strategy development --parallel --monitor
 
   # GitHub workflow automation
-  ./claude-flow github pr-manager "coordinate release with automated testing"
+  ./codex-flow github pr-manager "coordinate release with automated testing"
 
   # Neural memory management
-  ./claude-flow memory store "architecture" "microservices with API gateway pattern"
+  ./codex-flow memory store "architecture" "microservices with API gateway pattern"
 
   # Real-time system monitoring
-  ./claude-flow status --verbose
+  ./codex-flow status --verbose
 
 🏢 ENTERPRISE COMMAND CATEGORIES:
   Core Intelligence:    swarm, agent, sparc, memory, neural
@@ -130,14 +130,14 @@ USAGE:
   • Cross-package synchronization and dependency management
 
 GET DETAILED HELP:
-  claude-flow help <command>           # Command-specific enterprise documentation
-  claude-flow <command> --help         # Alternative help syntax
+  codex-flow help <command>           # Command-specific enterprise documentation
+  codex-flow <command> --help         # Alternative help syntax
   
   Examples:
-    claude-flow help swarm             # Swarm intelligence coordination
-    claude-flow help github            # GitHub workflow automation
-    claude-flow help neural            # Neural network processing
-    claude-flow help enterprise        # Enterprise features and compliance
+    codex-flow help swarm             # Swarm intelligence coordination
+    codex-flow help github            # GitHub workflow automation
+    codex-flow help neural            # Neural network processing
+    codex-flow help enterprise        # Enterprise features and compliance
 
 COMMON OPTIONS:
   --verbose, -v                        Enable detailed output with performance metrics
@@ -176,7 +176,7 @@ function showHelpWithCommands() {
   for (const command of commands) {
     console.log(`  ${command.name.padEnd(12)} ${command.description}`);
   }
-  console.log('\nUse "claude-flow help <command>" for detailed usage information');
+  console.log('\nUse "codex-flow help <command>" for detailed usage information');
 }
 
 async function main() {
@@ -1263,7 +1263,7 @@ async function main() {
             console.log(`Coverage: ${flags.coverage || 80}%`);
             console.log(`Commit: ${flags.commit || 'phase'}`);
             console.log(`\nEnhanced Features:`);
-            console.log(`  - Memory Bank enabled via: npx claude-flow memory commands`);
+            console.log(`  - Memory Bank enabled via: npx codex-flow memory commands`);
             console.log(`  - Coordination ${flags.parallel ? 'enabled' : 'disabled'}`);
             console.log(`  - Access Claude-Flow features through Bash tool`);
           } else {
@@ -1305,22 +1305,22 @@ ${flags.tools ? `- Custom tools specified: ${flags.tools}` : ''}
 
 ### Optional Orchestration Features
 
-If this task requires complex coordination, memory persistence, or multi-agent collaboration, you can use the claude-flow system:
+If this task requires complex coordination, memory persistence, or multi-agent collaboration, you can use the codex-flow system:
 
 1. **Persistent Memory** (if needed for your task)
-   - Store project data: \`npx claude-flow memory store <key> "<value>"\`
-   - Retrieve stored data: \`npx claude-flow memory query <key>\`
-   - Export/Import memory: \`npx claude-flow memory export/import <file>\`
+   - Store project data: \`npx codex-flow memory store <key> "<value>"\`
+   - Retrieve stored data: \`npx codex-flow memory query <key>\`
+   - Export/Import memory: \`npx codex-flow memory export/import <file>\`
 
 2. **Task Coordination** (if working on complex multi-part tasks)
-   - Check task status: \`npx claude-flow status\`
-   - Monitor progress: \`npx claude-flow monitor\`
-   - List active tasks: \`npx claude-flow task list\`
+   - Check task status: \`npx codex-flow status\`
+   - Monitor progress: \`npx codex-flow monitor\`
+   - List active tasks: \`npx codex-flow task list\`
 
 3. **Multi-Agent Collaboration** (if task benefits from parallelization)
-   - Spawn specialized agents: \`npx claude-flow agent spawn <type> --name <name>\`
-   - Create subtasks: \`npx claude-flow task create <type> "<description>"\`
-   - Coordinate work: \`npx claude-flow task assign <task-id> <agent-id>\``;
+   - Spawn specialized agents: \`npx codex-flow agent spawn <type> --name <name>\`
+   - Create subtasks: \`npx codex-flow task create <type> "<description>"\`
+   - Coordinate work: \`npx codex-flow task assign <task-id> <agent-id>\``;
 
             if (flags.parallel) {
               enhancedTask += `
@@ -1372,14 +1372,14 @@ Begin working on your task. The orchestration features are available as tools to
 
 \`\`\`bash
 # Example: Storing project-specific data
-Bash("npx claude-flow memory store project_config '{\\"name\\": \\"my-app\\", \\"version\\": \\"1.0.0\\"}'")
+Bash("npx codex-flow memory store project_config '{\\"name\\": \\"my-app\\", \\"version\\": \\"1.0.0\\"}'")
 
 # Example: Checking for previous work
-Bash("npx claude-flow memory query previous_implementation")
+Bash("npx codex-flow memory query previous_implementation")
 
 # Example: Creating subtasks for complex projects
-Bash("npx claude-flow task create frontend 'Build React components'")
-Bash("npx claude-flow task create backend 'Implement API endpoints'")
+Bash("npx codex-flow task create frontend 'Build React components'")
+Bash("npx codex-flow task create backend 'Implement API endpoints'")
 \`\`\`
 
 Remember: These are optional tools. Use them when they add value to your development process.
@@ -1431,7 +1431,7 @@ ${flags.mode === 'full' || !flags.mode ? `Full-stack development covering all as
                   CLAUDE_FLOW_MODE: flags.mode || 'full',
                   CLAUDE_FLOW_COVERAGE: (flags.coverage || 80).toString(),
                   CLAUDE_FLOW_COMMIT: flags.commit || 'phase',
-                  // Add claude-flow specific features
+                  // Add codex-flow specific features
                   CLAUDE_FLOW_MEMORY_ENABLED: 'true',
                   CLAUDE_FLOW_MEMORY_NAMESPACE: 'default',
                   CLAUDE_FLOW_COORDINATION_ENABLED: flags.parallel ? 'true' : 'false',
@@ -1471,10 +1471,10 @@ ${flags.mode === 'full' || !flags.mode ? `Full-stack development covering all as
           console.log('Claude commands: spawn, batch');
           console.log('\nExamples:');
           console.log(
-            '  claude-flow claude spawn "implement user authentication" --research --parallel',
+            '  codex-flow claude spawn "implement user authentication" --research --parallel',
           );
-          console.log('  claude-flow claude spawn "fix bug in payment system" --no-permissions');
-          console.log('  claude-flow claude batch workflow.json --dry-run');
+          console.log('  codex-flow claude spawn "fix bug in payment system" --no-permissions');
+          console.log('  codex-flow claude batch workflow.json --dry-run');
       }
       break;
 
@@ -2047,7 +2047,7 @@ ${flags.mode === 'full' || !flags.mode ? `Full-stack development covering all as
 
     default:
       printError(`Unknown command: ${command}`);
-      console.log('Run "claude-flow help" for available commands');
+      console.log('Run "codex-flow help" for available commands');
 
       // Suggest similar commands
       const commonCommands = [
@@ -2067,7 +2067,7 @@ ${flags.mode === 'full' || !flags.mode ? `Full-stack development covering all as
 
       if (suggestions.length > 0) {
         console.log('\nDid you mean:');
-        suggestions.forEach((cmd) => console.log(`  claude-flow ${cmd}`));
+        suggestions.forEach((cmd) => console.log(`  codex-flow ${cmd}`));
       }
 
       process.exit(1);
@@ -2157,7 +2157,7 @@ Shortcuts:
 
     config: async (key: string) => {
       try {
-        const config = JSON.parse(await fs.readFile('claude-flow.config.json', 'utf-8'));
+        const config = JSON.parse(await fs.readFile('codex-flow.config.json', 'utf-8'));
         if (key) {
           const keys = key.split('.');
           let value = config;
@@ -3020,20 +3020,20 @@ SPARC is a systematic approach to software development:
 
 ## Usage with Claude-Flow
 
-Use the claude-flow SPARC commands to leverage this environment:
+Use the codex-flow SPARC commands to leverage this environment:
 
 \`\`\`bash
 # List available modes
-claude-flow sparc modes
+codex-flow sparc modes
 
 # Run specific mode
-claude-flow sparc run code "implement user authentication"
+codex-flow sparc run code "implement user authentication"
 
 # Execute full TDD workflow  
-claude-flow sparc tdd "payment processing system"
+codex-flow sparc tdd "payment processing system"
 
 # Use custom workflow
-claude-flow sparc workflow .roo/workflows/basic-tdd.json
+codex-flow sparc workflow .roo/workflows/basic-tdd.json
 \`\`\`
 
 ## Configuration
@@ -3060,10 +3060,10 @@ This project uses the SPARC (Specification, Pseudocode, Architecture, Refinement
 ## SPARC Development Commands
 
 ### Core SPARC Commands
-- \`npx claude-flow sparc modes\`: List all available SPARC development modes
-- \`npx claude-flow sparc run <mode> "<task>"\`: Execute specific SPARC mode for a task
-- \`npx claude-flow sparc tdd "<feature>"\`: Run complete TDD workflow using SPARC methodology
-- \`npx claude-flow sparc info <mode>\`: Get detailed information about a specific mode
+- \`npx codex-flow sparc modes\`: List all available SPARC development modes
+- \`npx codex-flow sparc run <mode> "<task>"\`: Execute specific SPARC mode for a task
+- \`npx codex-flow sparc tdd "<feature>"\`: Run complete TDD workflow using SPARC methodology
+- \`npx codex-flow sparc info <mode>\`: Get detailed information about a specific mode
 
 ### Standard Build Commands
 - \`npm run build\`: Build the project
@@ -3076,7 +3076,7 @@ This project uses the SPARC (Specification, Pseudocode, Architecture, Refinement
 ### 1. Specification Phase
 \`\`\`bash
 # Create detailed specifications and requirements
-npx claude-flow sparc run spec-pseudocode "Define user authentication requirements"
+npx codex-flow sparc run spec-pseudocode "Define user authentication requirements"
 \`\`\`
 - Define clear functional requirements
 - Document edge cases and constraints
@@ -3086,7 +3086,7 @@ npx claude-flow sparc run spec-pseudocode "Define user authentication requiremen
 ### 2. Pseudocode Phase
 \`\`\`bash
 # Develop algorithmic logic and data flows
-npx claude-flow sparc run spec-pseudocode "Create authentication flow pseudocode"
+npx codex-flow sparc run spec-pseudocode "Create authentication flow pseudocode"
 \`\`\`
 - Break down complex logic into steps
 - Define data structures and interfaces
@@ -3096,7 +3096,7 @@ npx claude-flow sparc run spec-pseudocode "Create authentication flow pseudocode
 ### 3. Architecture Phase
 \`\`\`bash
 # Design system architecture and component structure
-npx claude-flow sparc run architect "Design authentication service architecture"
+npx codex-flow sparc run architect "Design authentication service architecture"
 \`\`\`
 - Create system diagrams and component relationships
 - Define API contracts and interfaces
@@ -3106,7 +3106,7 @@ npx claude-flow sparc run architect "Design authentication service architecture"
 ### 4. Refinement Phase (TDD Implementation)
 \`\`\`bash
 # Execute Test-Driven Development cycle
-npx claude-flow sparc tdd "implement user authentication system"
+npx codex-flow sparc tdd "implement user authentication system"
 \`\`\`
 
 **TDD Cycle:**
@@ -3118,7 +3118,7 @@ npx claude-flow sparc tdd "implement user authentication system"
 ### 5. Completion Phase
 \`\`\`bash
 # Integration, documentation, and validation
-npx claude-flow sparc run integration "integrate authentication with user management"
+npx codex-flow sparc run integration "integrate authentication with user management"
 \`\`\`
 - Integrate all components
 - Perform end-to-end testing
@@ -3161,7 +3161,7 @@ npx claude-flow sparc run integration "integrate authentication with user manage
 - Prefer composition over inheritance
 
 ### Memory and State Management
-- Use claude-flow memory system for persistent state across sessions
+- Use codex-flow memory system for persistent state across sessions
 - Store progress and findings using namespaced keys
 - Query previous work before starting new tasks
 - Export/import memory for backup and sharing
@@ -3171,19 +3171,19 @@ npx claude-flow sparc run integration "integrate authentication with user manage
 ### Memory Commands for SPARC Development
 \`\`\`bash
 # Store project specifications
-npx claude-flow memory store spec_auth "User authentication requirements and constraints"
+npx codex-flow memory store spec_auth "User authentication requirements and constraints"
 
 # Store architectural decisions
-npx claude-flow memory store arch_decisions "Database schema and API design choices"
+npx codex-flow memory store arch_decisions "Database schema and API design choices"
 
 # Store test results and coverage
-npx claude-flow memory store test_coverage "Authentication module: 95% coverage, all tests passing"
+npx codex-flow memory store test_coverage "Authentication module: 95% coverage, all tests passing"
 
 # Query previous work
-npx claude-flow memory query auth_implementation
+npx codex-flow memory query auth_implementation
 
 # Export project memory
-npx claude-flow memory export project_backup.json
+npx codex-flow memory export project_backup.json
 \`\`\`
 
 ### Memory Namespaces
@@ -3198,37 +3198,37 @@ npx claude-flow memory export project_backup.json
 ### Feature Development Workflow
 \`\`\`bash
 # 1. Start with specification
-npx claude-flow sparc run spec-pseudocode "User profile management feature"
+npx codex-flow sparc run spec-pseudocode "User profile management feature"
 
 # 2. Design architecture
-npx claude-flow sparc run architect "Profile service architecture with data validation"
+npx codex-flow sparc run architect "Profile service architecture with data validation"
 
 # 3. Implement with TDD
-npx claude-flow sparc tdd "user profile CRUD operations"
+npx codex-flow sparc tdd "user profile CRUD operations"
 
 # 4. Security review
-npx claude-flow sparc run security-review "profile data access and validation"
+npx codex-flow sparc run security-review "profile data access and validation"
 
 # 5. Integration testing
-npx claude-flow sparc run integration "profile service with authentication system"
+npx codex-flow sparc run integration "profile service with authentication system"
 
 # 6. Documentation
-npx claude-flow sparc run docs-writer "profile service API documentation"
+npx codex-flow sparc run docs-writer "profile service API documentation"
 \`\`\`
 
 ### Bug Fix Workflow
 \`\`\`bash
 # 1. Debug and analyze
-npx claude-flow sparc run debug "authentication token expiration issue"
+npx codex-flow sparc run debug "authentication token expiration issue"
 
 # 2. Write regression tests
-npx claude-flow sparc run tdd "token refresh mechanism tests"
+npx codex-flow sparc run tdd "token refresh mechanism tests"
 
 # 3. Implement fix
-npx claude-flow sparc run code "fix token refresh in authentication service"
+npx codex-flow sparc run code "fix token refresh in authentication service"
 
 # 4. Security review
-npx claude-flow sparc run security-review "token handling security implications"
+npx codex-flow sparc run security-review "token handling security implications"
 \`\`\`
 
 ## Configuration Files
@@ -3266,16 +3266,16 @@ npx claude-flow sparc run security-review "token handling security implications"
 ### Debug Commands
 \`\`\`bash
 # Check SPARC configuration
-npx claude-flow sparc modes
+npx codex-flow sparc modes
 
 # Verify memory system
-npx claude-flow memory stats
+npx codex-flow memory stats
 
 # Check system status
-npx claude-flow status
+npx codex-flow status
 
 # View detailed mode information
-npx claude-flow sparc info <mode-name>
+npx codex-flow sparc info <mode-name>
 \`\`\`
 
 ## Project Architecture

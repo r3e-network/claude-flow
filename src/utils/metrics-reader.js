@@ -194,7 +194,7 @@ class MetricsReader {
       const processCount = parseInt(stdout.trim(), 10);
       
       // Check for orchestrator running
-      const { stdout: orchestratorOut } = await execAsync('ps aux | grep -E "claude-flow start" | grep -v grep | wc -l');
+      const { stdout: orchestratorOut } = await execAsync('ps aux | grep -E "codex-flow start" | grep -v grep | wc -l');
       const orchestratorRunning = parseInt(orchestratorOut.trim(), 10) > 0;
       
       // Determine status

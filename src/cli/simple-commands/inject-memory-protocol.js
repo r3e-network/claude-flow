@@ -16,7 +16,7 @@ const MEMORY_PROTOCOL = `
 
 \`\`\`javascript
 // 1️⃣ IMMEDIATELY when agent starts - WRITE initial status
-mcp__claude-flow__memory_usage {
+mcp__codex-flow__memory_usage {
   action: "store",
   key: "swarm/[agent-name]/status",
   namespace: "coordination",
@@ -30,7 +30,7 @@ mcp__claude-flow__memory_usage {
 }
 
 // 2️⃣ AFTER EACH MAJOR STEP - WRITE progress
-mcp__claude-flow__memory_usage {
+mcp__codex-flow__memory_usage {
   action: "store",
   key: "swarm/[agent-name]/progress",
   namespace: "coordination",
@@ -45,7 +45,7 @@ mcp__claude-flow__memory_usage {
 }
 
 // 3️⃣ SHARE ARTIFACTS - WRITE for others
-mcp__claude-flow__memory_usage {
+mcp__codex-flow__memory_usage {
   action: "store",
   key: "swarm/shared/[component]",
   namespace: "coordination",
@@ -57,14 +57,14 @@ mcp__claude-flow__memory_usage {
 }
 
 // 4️⃣ CHECK DEPENDENCIES - READ then WAIT
-const dep = mcp__claude-flow__memory_usage {
+const dep = mcp__codex-flow__memory_usage {
   action: "retrieve",
   key: "swarm/shared/[component]",
   namespace: "coordination"
 }
 if (!dep.found) {
   // Write waiting status
-  mcp__claude-flow__memory_usage {
+  mcp__codex-flow__memory_usage {
     action: "store",
     key: "swarm/[agent-name]/waiting",
     namespace: "coordination",
@@ -76,7 +76,7 @@ if (!dep.found) {
 }
 
 // 5️⃣ SIGNAL COMPLETION
-mcp__claude-flow__memory_usage {
+mcp__codex-flow__memory_usage {
   action: "store",
   key: "swarm/[agent-name]/complete",
   namespace: "coordination",
@@ -107,19 +107,19 @@ const AGENT_INSTRUCTION = `
 🚨 MANDATORY MEMORY COORDINATION:
 
 1. START - IMMEDIATELY write status:
-   mcp__claude-flow__memory_usage { action: "store", key: "swarm/[your-name]/status", namespace: "coordination", value: {status: "starting"} }
+   mcp__codex-flow__memory_usage { action: "store", key: "swarm/[your-name]/status", namespace: "coordination", value: {status: "starting"} }
 
 2. PROGRESS - After EVERY major step:
-   mcp__claude-flow__memory_usage { action: "store", key: "swarm/[your-name]/progress", namespace: "coordination", value: {progress: X%} }
+   mcp__codex-flow__memory_usage { action: "store", key: "swarm/[your-name]/progress", namespace: "coordination", value: {progress: X%} }
 
 3. SHARE - Write ALL interfaces/APIs:
-   mcp__claude-flow__memory_usage { action: "store", key: "swarm/shared/[component]", namespace: "coordination", value: {definition: "..."} }
+   mcp__codex-flow__memory_usage { action: "store", key: "swarm/shared/[component]", namespace: "coordination", value: {definition: "..."} }
 
 4. CHECK - Verify dependencies exist:
-   mcp__claude-flow__memory_usage { action: "retrieve", key: "swarm/shared/[component]", namespace: "coordination" }
+   mcp__codex-flow__memory_usage { action: "retrieve", key: "swarm/shared/[component]", namespace: "coordination" }
 
 5. COMPLETE - Signal when done:
-   mcp__claude-flow__memory_usage { action: "store", key: "swarm/[your-name]/complete", namespace: "coordination", value: {deliverables: [...]} }
+   mcp__codex-flow__memory_usage { action: "store", key: "swarm/[your-name]/complete", namespace: "coordination", value: {deliverables: [...]} }
 
 REMEMBER: If you don't WRITE to memory, other agents can't coordinate with you!
 `;

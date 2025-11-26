@@ -1175,11 +1175,11 @@ async function modifyBashCommand(subArgs, flags) {
 
   const timeout = setTimeout(() => {
     if (!hasInput) {
-      console.log('Usage: echo \'{"tool_input":{"command":"your command"}}\' | claude-flow hooks modify-bash');
+      console.log('Usage: echo \'{"tool_input":{"command":"your command"}}\' | codex-flow hooks modify-bash');
       console.log('\nThis hook reads JSON from stdin and outputs modified JSON.');
       console.log('It is designed for use with Claude Code v2.0.10+ PreToolUse feature.');
       console.log('\nExample:');
-      console.log('  echo \'{"tool_input":{"command":"rm test.txt"}}\' | claude-flow hooks modify-bash');
+      console.log('  echo \'{"tool_input":{"command":"rm test.txt"}}\' | codex-flow hooks modify-bash');
       process.exit(0);
     }
   }, 100); // 100ms timeout
@@ -1254,11 +1254,11 @@ async function modifyFileCommand(subArgs, flags) {
 
   const timeout = setTimeout(() => {
     if (!hasInput) {
-      console.log('Usage: echo \'{"tool_input":{"file_path":"your/file.js"}}\' | claude-flow hooks modify-file');
+      console.log('Usage: echo \'{"tool_input":{"file_path":"your/file.js"}}\' | codex-flow hooks modify-file');
       console.log('\nThis hook reads JSON from stdin and outputs modified JSON.');
       console.log('It is designed for use with Claude Code v2.0.10+ PreToolUse feature.');
       console.log('\nExample:');
-      console.log('  echo \'{"tool_input":{"file_path":"test.js"}}\' | claude-flow hooks modify-file');
+      console.log('  echo \'{"tool_input":{"file_path":"test.js"}}\' | codex-flow hooks modify-file');
       process.exit(0);
     }
   }, 100); // 100ms timeout
@@ -1347,11 +1347,11 @@ async function modifyGitCommitCommand(subArgs, flags) {
 
   const timeout = setTimeout(() => {
     if (!hasInput) {
-      console.log('Usage: echo \'{"tool_input":{"command":"git commit -m \\"message\\""}}\'  | claude-flow hooks modify-git-commit');
+      console.log('Usage: echo \'{"tool_input":{"command":"git commit -m \\"message\\""}}\'  | codex-flow hooks modify-git-commit');
       console.log('\nThis hook reads JSON from stdin and outputs modified JSON.');
       console.log('It is designed for use with Claude Code v2.0.10+ PreToolUse feature.');
       console.log('\nExample:');
-      console.log('  echo \'{"tool_input":{"command":"git commit -m \\"fix bug\\""}}\'  | claude-flow hooks modify-git-commit');
+      console.log('  echo \'{"tool_input":{"command":"git commit -m \\"fix bug\\""}}\'  | codex-flow hooks modify-git-commit');
       process.exit(0);
     }
   }, 100); // 100ms timeout
@@ -1418,7 +1418,7 @@ async function modifyGitCommitCommand(subArgs, flags) {
 
   // Add co-author
   if (!/Co-Authored-By/.test(command)) {
-    formattedMsg += `\n\n🤖 Generated with Claude Flow\nCo-Authored-By: claude-flow <noreply@ruv.io>`;
+    formattedMsg += `\n\n🤖 Generated with Claude Flow\nCo-Authored-By: codex-flow <noreply@ruv.io>`;
   }
 
   // Replace message in command

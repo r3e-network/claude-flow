@@ -178,7 +178,7 @@ export async function runCommand(command, args = [], options = {}) {
 }
 
 // Configuration helpers
-export async function loadConfig(path = 'claude-flow.config.json') {
+export async function loadConfig(path = 'codex-flow.config.json') {
   const defaultConfig = {
     terminal: {
       poolSize: 10,
@@ -196,15 +196,27 @@ export async function loadConfig(path = 'claude-flow.config.json') {
     },
   };
 
-  try {
-    const content = await fs.readFile(path, 'utf8');
-    return { ...defaultConfig, ...JSON.parse(content) };
-  } catch {
-    return defaultConfig;
+  const candidates = [
+    path,
+    'codex-flow.config.json',
+    // Legacy fallback
+    'claude-flow.config.json',
+  ];
+
+  for (const candidate of candidates) {
+    try {
+      const content = await fs.readFile(candidate, 'utf8');
+      return { ...defaultConfig, ...JSON.parse(content) };
+    } catch {
+      // try next
+    }
   }
+
+  console.warn('⚠️  Could not load config (codex-flow.config.json or claude-flow.config.json), using defaults.');
+  return defaultConfig;
 }
 
-export async function saveConfig(config, path = 'claude-flow.config.json') {
+export async function saveConfig(config, path = 'codex-flow.config.json') {
   await writeJsonFile(path, config);
 }
 

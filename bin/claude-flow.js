@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Claude-Flow Cross-Platform Dispatcher
+ * Codex-Flow Cross-Platform Dispatcher
  * Detects and uses the best available runtime
  */
 
@@ -63,7 +63,7 @@ async function main() {
       process.on('exit', cleanup);
       
       child.on('error', (error) => {
-        console.error('❌ Node.js execution failed:', error.message);
+    console.error('❌ Codex-Flow Node.js execution failed:', error.message);
         cleanup();
         process.exit(1);
       });
@@ -84,8 +84,8 @@ async function main() {
       });
       
       child.on('error', (error) => {
-        console.error('❌ tsx execution failed:', error.message);
-        console.log('\n🔄 Trying npx tsx...');
+    console.error('❌ Codex-Flow tsx execution failed:', error.message);
+    console.log('\n🔄 Trying npx tsx...');
         
         // Try npx tsx as final fallback
         const npxChild = spawn('npx', ['tsx', tsFile, ...args], {
@@ -94,7 +94,7 @@ async function main() {
         });
         
         npxChild.on('error', (npxError) => {
-          console.error('❌ npx tsx also failed:', npxError.message);
+    console.error('❌ Codex-Flow npx tsx also failed:', npxError.message);
           showFallbackHelp();
           process.exit(1);
         });
@@ -116,20 +116,20 @@ async function main() {
     process.exit(1);
     
   } catch (error) {
-    console.error('❌ Unexpected error:', error.message);
+    console.error('❌ Unexpected Codex-Flow error:', error.message);
     showFallbackHelp();
     process.exit(1);
   }
 }
 
 function showFallbackHelp() {
-  console.log(`🧠 Claude-Flow v${VERSION} - Advanced AI Agent Orchestration System`);
+  console.log(`🧠 Codex-Flow v${VERSION} - Advanced AI Agent Orchestration System (Codex CLI only)`);
   console.log('');
   console.log('⚠️  No compatible runtime found.');
   console.log('');
   console.log('To install and run:');
   console.log('  1. Install tsx: npm install -g tsx');
-  console.log('  2. Run: claude-flow <command>');
+  console.log('  2. Run: codex-flow <command>');
   console.log('');
   console.log('Or use directly:');
   console.log('  node src/cli/simple-cli.js <command>');

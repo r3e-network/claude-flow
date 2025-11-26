@@ -68,7 +68,7 @@ export class MCPServer implements IMCPServer {
   private currentSession?: MCPSession | undefined;
 
   private readonly serverInfo = {
-    name: 'Claude-Flow MCP Server',
+    name: 'Codex-Flow MCP Server',
     version: '1.0.0',
   };
 

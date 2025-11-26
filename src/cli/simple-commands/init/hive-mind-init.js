@@ -617,9 +617,9 @@ This directory contains the Claude Flow Hive Mind system configuration and data.
 
 ## Getting Started
 
-1. Initialize: \`npx claude-flow@alpha hive-mind init\`
-2. Spawn swarm: \`npx claude-flow@alpha hive-mind spawn "your objective"\`
-3. Check status: \`npx claude-flow@alpha hive-mind status\`
+1. Initialize: \`npx codex-flow@alpha hive-mind init\`
+2. Spawn swarm: \`npx codex-flow@alpha hive-mind spawn "your objective"\`
+3. Check status: \`npx codex-flow@alpha hive-mind status\`
 
 ## Features
 
