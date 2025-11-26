@@ -12,6 +12,7 @@ import chalk from 'chalk';
  */
 
 import { Command } from '../commander-fix.js';
+import path from 'path';
 import { promises as fs } from 'node:fs';
 import * as Table from 'cli-table3';
 
@@ -28,6 +29,46 @@ interface MemoryEntry {
 
 // Memory backend type
 type MemoryBackend = 'sqlite' | 'json';
+
+const DEFAULT_AGENTDB_PATH = path.join(process.cwd(), '.codex-flow', 'agentdb.db');
+
+function createHashEmbedding(text: string, dims = 64): number[] {
+  const vec = new Array(dims).fill(0);
+  for (let i = 0; i < text.length; i++) {
+    vec[i % dims] += (text.charCodeAt(i) % 97) / 100;
+  }
+  const norm = Math.sqrt(vec.reduce((sum, v) => sum + v * v, 0)) || 1;
+  return vec.map(v => v / norm);
+}
+
+async function ensureAgentDBAdapter(options: {
+  mode?: string;
+  dbPath?: string;
+  quantization?: string;
+}) {
+  const targetPath =
+    options.dbPath ||
+    process.env.CODEX_AGENTDB_PATH ||
+    process.env.CLAUDE_FLOW_AGENTDB_PATH ||
+    DEFAULT_AGENTDB_PATH;
+
+  try {
+    await import('agentdb');
+  } catch {
+    throw new Error(
+      'AgentDB package not installed. Run: npm install agentdb@1.6.1 (optional dependency)',
+    );
+  }
+
+  const { AgentDBMemoryAdapter } = await import('../../memory/agentdb-adapter.js');
+  const adapter = new AgentDBMemoryAdapter({
+    mode: options.mode || 'hybrid',
+    agentdbPath: targetPath,
+    quantization: options.quantization || 'scalar',
+  });
+  await adapter.initialize();
+  return adapter;
+}
 
 /**
  * Unified Memory Manager - tries SQLite first, falls back to JSON
@@ -491,13 +532,43 @@ memoryCommand
   .option('-t, --threshold <threshold>', 'Minimum similarity threshold (0-1)', '0.7')
   .option('-n, --namespace <namespace>', 'Filter by namespace')
   .option('-m, --metric <metric>', 'Distance metric (cosine, euclidean, dot)', 'cosine')
+  .option('-p, --db-path <path>', 'AgentDB file path', undefined)
+  .option('--quantization <type>', 'Quantization mode (scalar|binary|product)', 'scalar')
+  .option('--mode <mode>', 'AgentDB mode (hybrid|agentdb|legacy)', 'hybrid')
   .action(async (query: string, options: any) => {
     try {
       console.log(chalk.blue('🔍 Performing semantic vector search with AgentDB...'));
-      console.log(chalk.gray('  (Requires AgentDB integration - see docs/agentdb/)'));
-      console.log(chalk.yellow('\n⚠️  This feature requires AgentDB v1.3.9+ integration'));
-      console.log(chalk.cyan('   Run: npm install agentdb@1.3.9'));
-      console.log(chalk.cyan('   Docs: docs/agentdb/PRODUCTION_READINESS.md\n'));
+      const adapter = await ensureAgentDBAdapter({
+        mode: options.mode,
+        dbPath: options.dbPath,
+        quantization: options.quantization,
+      });
+
+      const embedding = createHashEmbedding(query);
+      const results = await adapter.vectorSearch(embedding, {
+        k: parseInt(options.top, 10) || 10,
+        namespace: options.namespace,
+      });
+
+      if (!results || results.length === 0) {
+        console.log(chalk.yellow('No results found.'));
+        return;
+      }
+
+      const table = new Table({
+        head: ['ID', 'Similarity', 'Namespace', 'Value'],
+      });
+
+      for (const result of results) {
+        table.push([
+          result.id,
+          result.similarity?.toFixed(4) ?? '',
+          result.metadata?.namespace ?? '',
+          (result.value || result.metadata?.value || '').toString().slice(0, 80),
+        ]);
+      }
+
+      console.log(table.toString());
     } catch (error) {
       console.error(chalk.red('Failed to vector search:'), (error as Error).message);
     }
@@ -510,12 +581,36 @@ memoryCommand
   .arguments('<key> <value>')
   .option('-n, --namespace <namespace>', 'Target namespace', 'default')
   .option('-m, --metadata <metadata>', 'Additional metadata (JSON)')
+  .option('-p, --db-path <path>', 'AgentDB file path', undefined)
+  .option('--quantization <type>', 'Quantization mode (scalar|binary|product)', 'scalar')
+  .option('--mode <mode>', 'AgentDB mode (hybrid|agentdb|legacy)', 'hybrid')
   .action(async (key: string, value: string, options: any) => {
     try {
       console.log(chalk.blue('💾 Storing with vector embedding...'));
-      console.log(chalk.gray('  (Requires AgentDB integration)'));
-      console.log(chalk.yellow('\n⚠️  This feature requires AgentDB v1.3.9+ integration'));
-      console.log(chalk.cyan('   See PR #830 for implementation details\n'));
+      const adapter = await ensureAgentDBAdapter({
+        mode: options.mode,
+        dbPath: options.dbPath,
+        quantization: options.quantization,
+      });
+
+      let metadata: any = {};
+      if (options.metadata) {
+        try {
+          metadata = JSON.parse(options.metadata);
+        } catch {
+          console.warn(chalk.yellow('⚠️  Could not parse metadata JSON, storing as string.'));
+          metadata = { raw: options.metadata };
+        }
+      }
+
+      const embedding = createHashEmbedding(value);
+      await adapter.storeWithEmbedding(key, value, {
+        namespace: options.namespace,
+        metadata,
+        embedding,
+      });
+
+      console.log(chalk.green('✅ Stored with embedding in AgentDB (hybrid mode if enabled)'));
     } catch (error) {
       console.error(chalk.red('Failed to store vector:'), (error as Error).message);
     }

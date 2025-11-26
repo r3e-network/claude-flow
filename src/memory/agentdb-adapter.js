@@ -6,6 +6,8 @@
 
 import { EnhancedMemory } from './enhanced-memory.js';
 import { AgentDBBackend } from './backends/agentdb.js';
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
 
 export class AgentDBMemoryAdapter extends EnhancedMemory {
   constructor(options = {}) {
@@ -24,6 +26,7 @@ export class AgentDBMemoryAdapter extends EnhancedMemory {
      * Null if mode is 'legacy' or initialization fails
      */
     this.agentdb = null;
+    this.agentdbPath = options.agentdbPath || path.join('.codex-flow', 'agentdb.db');
 
     /**
      * Track initialization state
@@ -39,8 +42,11 @@ export class AgentDBMemoryAdapter extends EnhancedMemory {
     // Initialize AgentDB if mode allows
     if (this.mode !== 'legacy') {
       try {
+        // Ensure directory exists
+        await fs.mkdir(path.dirname(this.agentdbPath), { recursive: true });
+
         this.agentdb = new AgentDBBackend({
-          dbPath: this.options.agentdbPath || '.agentdb/claude-flow.db',
+          dbPath: this.agentdbPath,
           quantization: this.options.quantization || 'scalar',
           enableHNSW: this.options.enableHNSW !== false,
         });

@@ -5,7 +5,7 @@
 
 export class AgentDBBackend {
   constructor(options = {}) {
-    this.dbPath = options.dbPath || '.agentdb/claude-flow.db';
+    this.dbPath = options.dbPath || '.codex-flow/agentdb.db';
     this.quantization = options.quantization || 'scalar'; // scalar, binary, product
     this.enableHNSW = options.enableHNSW !== false;
     this.db = null;
